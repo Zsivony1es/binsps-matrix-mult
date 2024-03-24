@@ -1,0 +1,15 @@
+#ifndef __RANDOMMATRIXGENERATOR_H__
+#define __RANDOMMATRIXGENERATOR_H__
+
+#include "Matrix.h"
+
+template<size_t N, size_t M, typename T = float>
+class RandomMatrixGenerator{
+    Matrix<N,M,T> matrix;
+public:
+    RandomMatrixGenerator();
+    Matrix<N,M,T>& get_new_matrix(float sparsity);
+    Matrix<N,M,T> get_matrix();
+};
+
+#endif
