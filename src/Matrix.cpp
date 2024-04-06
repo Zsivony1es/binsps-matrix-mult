@@ -6,7 +6,7 @@ template<size_t N, size_t M, typename T>
 Matrix<N, M, T>::Matrix() {}
 
 template<size_t N, size_t M, typename T>
-Matrix<N, M, T>::Matrix(const T& initialValue) {
+Matrix<N, M, T>::Matrix(T const& initialValue) {
     for (size_t i = 0; i < M; ++i) {
         for (size_t j = 0; j < N; ++j) {
             data[i][j] = initialValue;
