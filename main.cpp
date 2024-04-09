@@ -1,5 +1,4 @@
-#include "src/RandomMatrixGenerator.h"
-#include "src/subsrc1/f3.h"
+#include "src/Matrix.cpp"
 
 #include <cstdlib>
 #include <iomanip>
@@ -8,8 +7,7 @@
 
 int main(int argc, char *argv[])
 {
-    std::cout << f3(5, 6) << std::endl;
-    Matrix<15, 30, bool> m;
+    Matrix<15, 30, bool> m(false);
 
     std::cout << m.to_string();
 
