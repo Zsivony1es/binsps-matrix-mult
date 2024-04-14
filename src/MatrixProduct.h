@@ -1,12 +1,11 @@
-#ifndef MATRIXPRODUCT_H
-#define MATRIXPRODUCT_H
+#pragma once
 
 #include "Matrix.h"
+#include "SparseMatrix.cpp"
 
 class MatrixProduct {
 public:
     template <size_t N, size_t M>
-    static Matrix<N, 1, double> opt_bin_matrix_vector(Matrix<N, M, bool> m, Matrix<M, 1, double> vec);
+    static std::vector<double> bin_matrix_vector(Matrix<N, M, bool> m, Matrix<M, 1, double> vec);
+    static std::vector<double> bin_matrix_vector(SparseMatrix<bool> m, std::vector<double> vec);
 };
-
-#endif // MATRIXPRODUCT_H

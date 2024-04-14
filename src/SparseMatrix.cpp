@@ -1,4 +1,6 @@
 #include "Matrix.cpp"
+#include "utils/Utils.cpp"
+
 #include <concepts>
 #include <vector>
 #include <string>
@@ -49,40 +51,9 @@ public:
         std::stringstream ss;
         bool first = true;
 
-        ss << "Entries: [";
-        std::for_each(std::begin(this->entries), std::end(this->entries),
-                   [&ss, &first, sep=""](T x) mutable {
-                       ss << sep << x;
-                       if (first){
-                        first = false;
-                        sep = ", ";
-                       }
-                   });
-        ss << ']' << std::endl;
-
-        first = true;
-        ss << "Column indices: [";
-        std::for_each(std::begin(this->col_index), std::end(this->col_index),
-                   [&ss, &first, sep=""](size_t x) mutable {
-                       ss << sep << x;
-                       if (first){
-                        first = false;
-                        sep = ", ";
-                       }
-                   });
-        ss << ']' << std::endl;
-
-        first = true;
-        ss << "Row counts: [";
-        std::for_each(std::begin(this->row_count), std::end(this->row_count),
-                   [&ss, &first, sep=""](size_t x) mutable {
-                       ss << sep << x;
-                       if (first){
-                        first = false;
-                        sep = ", ";
-                       }
-                   });
-        ss << ']' << std::endl;
+        ss << "Entries: " << Utils.vec_to_str(this->entries) << std::endl;
+        ss << "Column index: " << Utils.vec_to_str(this->col_index) << std::endl;
+        ss << "Row counts: " << Utils.vec_to_str(this->row_index) << std::endl;
 
         return ss.str();
     }
