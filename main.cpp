@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[])
 {
-    Matrix<15, 30, bool> m(false);
+    Matrix<15, 30, bool> m(true);
 
     std::cout << m.to_string();
 
