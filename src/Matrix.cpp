@@ -1,3 +1,4 @@
+#pragma GCC diagnostic ignored "-Wpragma-once-outside-header"
 #pragma once
 
 #include <array>

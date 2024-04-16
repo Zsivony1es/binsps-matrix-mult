@@ -1,8 +1,5 @@
 #include "Utils.h"
 
-#include <algorithm>
-#include <sstream>
-
 template <typename T>
 std::string Utils::vec_to_str(const std::vector<T>& v){
     std::stringstream ss;
@@ -18,4 +15,13 @@ std::string Utils::vec_to_str(const std::vector<T>& v){
                });
     ss << ']';
     return ss.str();
+}
+
+uint Utils::time_exec(std::function<void()> func){
+    
+    auto start = std::chrono::steady_clock::now();
+    func();
+    auto end = std::chrono::steady_clock::now();
+
+    return std::chrono::duration<double, std::nano>(end - start).count();
 }
