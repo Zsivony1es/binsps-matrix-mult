@@ -51,9 +51,9 @@ public:
         std::stringstream ss;
         bool first = true;
 
-        ss << "Entries: " << Utils.vec_to_str(this->entries) << std::endl;
-        ss << "Column index: " << Utils.vec_to_str(this->col_index) << std::endl;
-        ss << "Row counts: " << Utils.vec_to_str(this->row_index) << std::endl;
+        ss << "Entries: " << Utils::vec_to_str<T>(this->entries) << std::endl;
+        ss << "Column index: " << Utils::vec_to_str<T>(this->col_index) << std::endl;
+        ss << "Row counts: " << Utils::vec_to_str<T>(this->row_index) << std::endl;
 
         return ss.str();
     }

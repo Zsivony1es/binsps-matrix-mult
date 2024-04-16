@@ -1,4 +1,4 @@
 OBJS := RandomMatrixGenerator.o SparseMatrix.o Matrix.o 
-DIRS := subsrc1
+DIRS := utils
 
 include $(SUB_MAKE_INCLUDE)
