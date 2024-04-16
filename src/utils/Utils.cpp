@@ -1,11 +1,14 @@
 #include "Utils.h"
 
-<template typename T>
-static std::string Utils::vec_to_str(const std::vector<T>& v){
+#include <algorithm>
+#include <sstream>
+
+template <typename T>
+std::string Utils::vec_to_str(const std::vector<T>& v){
     std::stringstream ss;
     ss << '[';
     bool first = true;
-    std::for_each(std::begin(this->entries), std::end(this->entries),
+    std::for_each(std::begin(v), std::end(v),
                [&ss, &first, sep=""](T x) mutable {
                    ss << sep << x;
                    if (first){

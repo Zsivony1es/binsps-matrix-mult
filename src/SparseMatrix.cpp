@@ -4,7 +4,6 @@
 #include <concepts>
 #include <vector>
 #include <string>
-#include <algorithm>
 
 template <typename T>
 concept NumericOrBoolean = std::is_arithmetic_v<T> || std::same_as<T, bool>;
@@ -53,7 +52,7 @@ public:
 
         ss << "Entries: " << Utils::vec_to_str<T>(this->entries) << std::endl;
         ss << "Column index: " << Utils::vec_to_str<T>(this->col_index) << std::endl;
-        ss << "Row counts: " << Utils::vec_to_str<T>(this->row_index) << std::endl;
+        ss << "Row counts: " << Utils::vec_to_str<T>(this->row_count) << std::endl;
 
         return ss.str();
     }
