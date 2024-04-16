@@ -1,3 +1,6 @@
+#pragma GCC diagnostic ignored "-Wpragma-once-outside-header"
+#pragma once
+
 #include "Matrix.cpp"
 #include "utils/Utils.cpp"
 

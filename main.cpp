@@ -1,4 +1,4 @@
-#include "src/MatrixProduct.h"
+#include "src/MatrixProduct.cpp"
 
 #include <cstdlib>
 #include <iomanip>

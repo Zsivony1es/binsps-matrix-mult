@@ -1,3 +1,6 @@
+#pragma GCC diagnostic ignored "-Wpragma-once-outside-header"
+#pragma once
+
 #include "Matrix.cpp"
 
 template<size_t N, size_t M, typename T = float>

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Matrix.cpp"
 #include "SparseMatrix.cpp"
 
 class MatrixProduct {
