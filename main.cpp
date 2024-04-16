@@ -19,9 +19,7 @@ int main(int argc, char *argv[])
 
     std::vector<double> input = {0.00032, 1.231, 42, 51232, 0.000000053};
 
-    auto result = MatrixProduct.bin_matrix_vector(sp_m, input);
-
-    
+    auto result = MatrixProduct::bin_matrix_vector(sp_m, input);
 
     return 0;
 }
