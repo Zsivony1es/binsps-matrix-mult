@@ -12,7 +12,3 @@ std::vector<double> MatrixProduct::naive_bin_matrix_vector(Matrix<N, M, bool> m,
     }
     return ret_val;
 }
-
-std::vector<double> MatrixProduct::bin_matrix_vector(SparseMatrix<bool> m, std::vector<double> vec){
-    return std::vector<double>(); // NOT IMPLEMENTED
-}
