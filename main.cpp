@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 
     auto result = MatrixProduct::bin_matrix_vector(sp_m, input);
 
-
+    std::cout << "Result: " << Utils::vec_to_str<double>(result) << std::endl;
 
     return 0;
 }
