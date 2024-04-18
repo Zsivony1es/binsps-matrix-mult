@@ -1,4 +1,4 @@
-OBJS := MatrixProduct.o RandomMatrixGenerator.o SparseMatrix.o Matrix.o 
-DIRS := utils
+OBJS := MatrixProduct.o RandomMatrixGenerator.o
+DIRS := utils datastructs
 
 include $(SUB_MAKE_INCLUDE)
