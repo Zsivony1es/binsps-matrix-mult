@@ -1,6 +1,7 @@
 #pragma once
 
 #include "datastructs/SparseMatrix.cpp"
+#include "datastructs/SparseBoolMatrix.cpp"
 
 /**
  * @brief The MatrixProduct class represents a collection of matrix product operations.
@@ -27,6 +28,17 @@ public:
      * @return The resulting vector.
      */
     static inline std::vector<double> bin_matrix_vector(SparseMatrix<bool> m, std::vector<double> vec){
+        return std::vector<double>(); // NOT IMPLEMENTED
+    }
+
+    /**
+     * @brief Computes the matrix-vector product using a binary matrix multiplication algorithm optimized for sparse matrices.
+     * 
+     * @param m The sparse binary matrix.
+     * @param vec The vector.
+     * @return The resulting vector.
+     */
+    static inline std::vector<double> bin_matrix_vector(SparseBoolMatrix m, std::vector<double> vec){
         return std::vector<double>(); // NOT IMPLEMENTED
     }
 };

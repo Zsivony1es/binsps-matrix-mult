@@ -49,7 +49,6 @@ public:
 
     std::string to_string() const {
         std::stringstream ss;
-        bool first = true;
 
         ss << "Entries: " << Utils::vec_to_str<T>(this->entries) << std::endl;
         ss << "Column index: " << Utils::vec_to_str<size_t>(this->col_index) << std::endl;
