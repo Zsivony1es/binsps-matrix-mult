@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <iostream>
 #include <cmath>
+#include <sstream>
 
 int main(int argc, char *argv[])
 {
@@ -26,9 +27,12 @@ int main(int argc, char *argv[])
     uint time = Utils::time_exec(
         [&result, &input, &sbm](){result = MatrixProduct::bin_matrix_vector(sbm, input);}
     );
-     
-    std::cout << "Result: " << Utils::vec_to_str<double>(result) << std::endl;
-    std::cout << "Time: " << time << "ns" << std::endl;
+    
+    std::stringstream ss;
+    ss << "Result: " << Utils::vec_to_str<double>(result) << std::endl;
+    ss << "Time: " << time << "ns" << std::endl;
+
+    Utils::write_to_file("main_output.txt", ss.str());
 
     return 0;
 }

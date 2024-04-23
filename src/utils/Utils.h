@@ -6,6 +6,7 @@
 #include <sstream>
 #include <functional>
 #include <chrono>
+#include <fstream>
 
 /**
  * @brief The Utils class provides utility functions for various operations.
@@ -20,6 +21,18 @@ public:
      */
     template <typename T>
     static std::string vec_to_str(const std::vector<T>& v);
+
+    /**
+     * @brief Writes a string to a file.
+     * @param filename The name of the file to be written to.
+     * @param content The content to be written to the file.
+     */
+    static void write_to_file(const std::string& filename, const std::string& content){
+        std::ofstream file;
+        file.open("./generated/" + filename);
+        file << content;
+        file.close();
+    }
 
     /**
      * @brief Measures the execution time of a given function.
