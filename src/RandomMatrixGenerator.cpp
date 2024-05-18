@@ -81,7 +81,7 @@ private:
         return SparseBoolMatrix(col_indices, row_pointers);
     }
 
-    RawBoolMatrix generate_raw_bool(float sparsity){
+    RawBoolMatrix<N,M> generate_raw_bool(float sparsity){
 
         std::uniform_real_distribution<double> distribution(0.0, 1.0);
         std::array<std::array<bool, N>, M> data;
@@ -95,6 +95,6 @@ private:
             }
         }
 
-        return RawBoolMatrix(entries);
+        return RawBoolMatrix<N,M>(entries);
     }
 };

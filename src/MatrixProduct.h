@@ -2,6 +2,7 @@
 
 #include "datastructs/SparseMatrix.cpp"
 #include "datastructs/SparseBoolMatrix.cpp"
+#include "datastructs/RawBoolMatrix.cpp"
 
 /**
  * @brief The MatrixProduct class represents a collection of matrix product operations.
@@ -27,21 +28,7 @@ public:
      * @param vec The vector.
      * @return The resulting vector.
      */
-    static inline std::vector<double> bin_matrix_vector(SparseMatrix<bool> m, std::vector<double> vec){
-        return std::vector<double>(); // NOT IMPLEMENTED
-    }
-
-    /**
-     * @brief Computes the matrix-vector product using a binary matrix multiplication algorithm optimized for sparse matrices.
-     * 
-     * @param m The sparse binary matrix.
-     * @param vec The vector.
-     * @return The resulting vector.
-     */
-    static inline std::vector<double> bin_matrix_vector(SparseBoolMatrix m, std::vector<double> vec){
-        
-        return std::vector<double>(); // NOT IMPLEMENTED
-    }
+    static inline std::vector<double> bin_matrix_vector(SparseBoolMatrix m, std::vector<double> vec);
 
     /**
      * @brief Computes the matrix-vector product using a binary matrix multiplication algorithm optimized for sparse matrices,
@@ -59,4 +46,20 @@ public:
         }
         return bin_matrix_vector(m, vec);
     }
+
+    /**
+     * @brief Computes the matrix-vector product using the BLAS library for a raw boolean matrix and a vector.
+     *
+     * @tparam N the number of rows in the raw boolean matrix
+     * @tparam M the number of columns in the raw boolean matrix and the size of the vector
+     *
+     * @param m the raw boolean matrix
+     * @param vec the vector
+     *
+     * @return the resulting vector
+     *
+     * @throws None
+     */
+    template <size_t N, size_t M>
+    static std::vector<double> blas_matrix_vector(RawBoolMatrix<N,M> m, std::array<double, M> vec);
 };
