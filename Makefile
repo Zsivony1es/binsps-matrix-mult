@@ -50,4 +50,4 @@ main.o: main.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(TARGET) $(TEST_TARGET) $(SRC_DIR)/**/*.o $(TEST_DIR)/**/*.o main.o
+	rm -f $(TARGET) $(TEST_TARGET) $(SRC_DIR)/**/*.o $(SRC_DIR)/*.o $(TEST_DIR)/*.o $(TEST_DIR)/**/*.o main.o
