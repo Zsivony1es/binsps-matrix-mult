@@ -3,23 +3,17 @@
 
 #include "IMatrix.cpp"
 
-#include <array>
+#include <string>
 #include <sstream>
-#include <concepts>
 
-template <typename T>
-concept NumericOrBoolean = std::is_arithmetic_v<T> || std::same_as<T, bool>;
-
-template <size_t N, size_t M, NumericOrBoolean T>
-class Matrix : public IMatrix<T> {
+template <size_t N, size_t M>
+class RawBoolMatrix : public IMatrix<bool> {
 private:
-    std::array<std::array<T, N>, M> data;
+    bool data[N][M];
 public:
-    Matrix() {}
+    RawBoolMatrix() {}
 
-    explicit Matrix(const std::array<std::array<T, N>, M>& data) : data(data) {}
-
-    explicit Matrix(const T& initialValue) {
+    explicit RawBoolMatrix(bool initialValue) {
         for (size_t i = 0; i < M; ++i) {
             for (size_t j = 0; j < N; ++j) {
                 data[i][j] = initialValue;
@@ -27,11 +21,19 @@ public:
         }
     }
 
-    T& operator[](size_t row, size_t col){
+    explicit RawBoolMatrix(const std::array<std::array<bool, N>, M>& data){
+        for (size_t i = 0; i < M; ++i) {
+            for (size_t j = 0; j < N; ++j) {
+                this->data[i][j] = data[i][j];
+            }
+        }
+    }
+
+    bool operator[](size_t row, size_t col){
         return data[row][col];
     }
 
-    const T operator[](size_t row, size_t col) const override {
+    const bool operator[](size_t row, size_t col) const override {
         return data[row][col];
     }
 

@@ -4,13 +4,8 @@
 #include "Matrix.cpp"
 #include "../utils/Utils.cpp"
 
-#include <concepts>
-
-template <typename T>
-concept NumericOrBoolean = std::is_arithmetic_v<T> || std::same_as<T, bool>;
-
 template <NumericOrBoolean T>
-class SparseMatrix {
+class SparseMatrix : public IMatrix<T> {
 private:
     const T DEFAULT_VALUE = static_cast<T>(0);
     std::vector<T> entries;
@@ -47,7 +42,16 @@ public:
         this->col_count = *std::max_element(col_index.begin(), col_index.end()) + 1;
     }
 
-    std::string to_string() const {
+    const T operator[](size_t row, size_t col) const override {
+        for (size_t i = row_count[row]; i < row_count[row + 1]; i++) {
+            if (col_index[i] == col) {
+                return this->entries[i];
+            }
+        }
+        return this->DEFAULT_VALUE;
+    }
+
+    std::string to_string() const override {
         std::stringstream ss;
 
         ss << "Entries: " << Utils::vec_to_str<T>(this->entries) << std::endl;

@@ -39,6 +39,24 @@ public:
      * @return The resulting vector.
      */
     static inline std::vector<double> bin_matrix_vector(SparseBoolMatrix m, std::vector<double> vec){
+        
         return std::vector<double>(); // NOT IMPLEMENTED
+    }
+
+    /**
+     * @brief Computes the matrix-vector product using a binary matrix multiplication algorithm optimized for sparse matrices,
+     * while excluding elements that are below a certain threshold for faster computation.
+     * 
+     * @param m The sparse binary matrix.
+     * @param vec The vector.
+     * @param threshold The threshold below which elements are set to zero.
+     * @return The resulting vector.
+     */
+    static inline std::vector<double> bin_matrix_vector(SparseBoolMatrix m, std::vector<double> vec, double threshold){
+        for (double& entry : vec){
+            if (std::abs(entry) < threshold) 
+                entry = 0.0;
+        }
+        return bin_matrix_vector(m, vec);
     }
 };

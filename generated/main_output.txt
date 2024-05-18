@@ -1,2 +1,2 @@
 Result: []
-Time: 5375ns
+Time: 6042ns

@@ -1,54 +1,53 @@
-# target macros
+# Compiler and flags
+CXX := g++
+CXXFLAGS := -Wall -std=c++2b
+
+# Directories
+SRC_DIR := src
+TEST_DIR := test
+
+# Source and object files
+SRCS := $(wildcard $(SRC_DIR)/**/*.cpp)
+OBJS := $(patsubst $(SRC_DIR)/%.cpp, $(SRC_DIR)/%.o, $(SRCS)) main.o
+
+TEST_SRCS := $(wildcard $(TEST_DIR)/*.cpp)
+TEST_OBJS := $(patsubst $(TEST_DIR)/%.cpp, $(TEST_DIR)/%.o, $(TEST_SRCS))
+
+# Google Test library and flags
+GTEST_DIR := /opt/homebrew/opt/googletest
+GTEST_INCLUDE := -I$(GTEST_DIR)/include
+GTEST_LIB := -L$(GTEST_DIR)/lib -lgtest -lgtest_main -pthread
+
+# Executables
 TARGET := run
-MAIN_SRC := main.cpp
+TEST_TARGET := run_tests
 
-# compile macros
-DIRS := src
-OBJS := main.o
+.PHONY: all test clean
 
-# intermedia compile macros
-ALL_OBJS := $(OBJS)
-CLEAN_FILES := $(TARGET) $(OBJS)
-DIST_CLEAN_FILES := $(OBJS)
-
-# recursive wildcard
-rwildcard=$(foreach d,$(wildcard $(addsuffix *,$(1))),$(call rwildcard,$(d)/,$(2))$(filter $(subst *,%,$(2)),$(d)))
-
-# default target
-default: show-info all
-
-# non-phony targets
-$(TARGET): build-subdirs $(OBJS) find-all-objs
-	@echo -e "\t" CXX $(CXXFLAGS) $(ALL_OBJS) -o $@
-	@$(CXX) $(CXXFLAGS) $(ALL_OBJS) -o $@
-
-# phony targets
-.PHONY: all
 all: $(TARGET)
-	@echo Target $(TARGET) build finished.
 
-.PHONY: clean
-clean: clean-subdirs
-	@echo CLEAN $(CLEAN_FILES)
-	@rm -f $(CLEAN_FILES)
+# Main target
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-.PHONY: distclean
-distclean: clean-subdirs
-	@echo CLEAN $(DIST_CLEAN_FILES)
-	@rm -f $(DIST_CLEAN_FILES)
+# Test target
+test: $(TEST_TARGET)
+	./$(TEST_TARGET)
 
-# phony funcs
-.PHONY: find-all-objs
-find-all-objs:
-	$(eval ALL_OBJS += $(call rwildcard,$(DIRS),*.o))
+$(TEST_TARGET): $(TEST_OBJS) $(filter-out main.o, $(OBJS))
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_LIB)
 
-.PHONY: show-info
-show-info:
-	@echo Building Project
+# Compile rules for source files
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-# need to be placed at the end of the file
-mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
-export PROJECT_PATH := $(patsubst %/,%,$(dir $(mkfile_path)))
-export MAKE_INCLUDE=$(PROJECT_PATH)/config/make.global
-export SUB_MAKE_INCLUDE=$(PROJECT_PATH)/config/submake.global
-include $(MAKE_INCLUDE)
+# Compile rules for test files
+$(TEST_DIR)/%.o: $(TEST_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) $(GTEST_INCLUDE) -c -o $@ $<
+
+# Compilation for main.o
+main.o: main.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+clean:
+	rm -f $(TARGET) $(TEST_TARGET) $(SRC_DIR)/**/*.o $(TEST_DIR)/**/*.o main.o
