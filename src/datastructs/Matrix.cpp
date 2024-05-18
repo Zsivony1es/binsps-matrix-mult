@@ -1,18 +1,25 @@
 #pragma GCC diagnostic ignored "-Wpragma-once-outside-header"
 #pragma once
 
-#include <array>
-#include <string>
-#include <sstream>
+#include "IMatrix.cpp"
 
-template <size_t N, size_t M, typename T = float>
-class Matrix {
+#include <array>
+#include <sstream>
+#include <concepts>
+
+template <typename T>
+concept NumericOrBoolean = std::is_arithmetic_v<T> || std::same_as<T, bool>;
+
+template <size_t N, size_t M, NumericOrBoolean T>
+class Matrix : public IMatrix<T> {
 private:
     std::array<std::array<T, N>, M> data;
 public:
-    Matrix(){}
+    Matrix() {}
 
-    explicit Matrix(const T& initialValue){
+    explicit Matrix(const std::array<std::array<T, N>, M>& data) : data(data) {}
+
+    explicit Matrix(const T& initialValue) {
         for (size_t i = 0; i < M; ++i) {
             for (size_t j = 0; j < N; ++j) {
                 data[i][j] = initialValue;
@@ -24,11 +31,11 @@ public:
         return data[row][col];
     }
 
-    const T& operator[](size_t row, size_t col) const{
+    const T operator[](size_t row, size_t col) const override {
         return data[row][col];
     }
 
-    std::string to_string() const{
+    std::string to_string() const override {
         std::stringstream ss;
         for (size_t i = 0; i < M; ++i) {
             for (size_t j = 0; j < N; ++j) {

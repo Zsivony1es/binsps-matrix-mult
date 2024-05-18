@@ -2,18 +2,21 @@
 #pragma once
 
 #include "../utils/Utils.h"
+#include "IMatrix.cpp"
 
 #include <vector>
 #include <iterator>
 #include <string>
 #include <sstream>
 
-class SparseBoolMatrix {
+class SparseBoolMatrix : public IMatrix<bool> {
 private:
     std::vector<size_t> col_indices;
     std::vector<size_t> row_pointers;
 
 public:
+    SparseBoolMatrix() {}
+
     SparseBoolMatrix(const size_t numRows, const size_t numCols) {
         row_pointers.resize(numRows + 1, 0);
     }
@@ -31,7 +34,7 @@ public:
      *
      * @return True if the matrix has a value at the specified row and column, false otherwise.
      */
-    const bool operator[](size_t row, size_t col) const {
+    const bool operator[](size_t row, size_t col) const override {
         for (size_t i = row_pointers[row]; i < row_pointers[row + 1]; i++) {
             if (col_indices[i] == col) {
                 return true;
@@ -40,7 +43,7 @@ public:
         return false;
     }
 
-    std::string to_string() const {
+    std::string to_string() const override {
         std::stringstream ss;
 
         ss << "Column index: " << Utils::vec_to_str<size_t>(this->col_indices) << std::endl;
