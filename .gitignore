@@ -1,2 +1,4 @@
 Paper
 *.o
+run
+run_test
