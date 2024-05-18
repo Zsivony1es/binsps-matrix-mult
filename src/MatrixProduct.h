@@ -17,8 +17,8 @@ public:
      * @param vec The vector.
      * @return The resulting vector.
      */
-    template <size_t N, size_t M>
-    static std::vector<double> naive_bin_matrix_vector(Matrix<N, M, bool> m, Matrix<M, 1, double> vec);
+    template <size_t N, size_t M, NumericOrBoolean T>
+    static std::vector<double> naive_bin_matrix_vector(Matrix<N, M, T> m, std::vector<double> vec);
 
     /**
      * @brief Computes the matrix-vector product using a binary matrix multiplication algorithm optimized for sparse matrices.
