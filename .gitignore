@@ -1,4 +1,4 @@
 Paper
 *.o
 run
-run_test
+run_tests
