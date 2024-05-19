@@ -7,6 +7,7 @@
 #include <functional>
 #include <chrono>
 #include <fstream>
+#include <random>
 
 /**
  * @brief The Utils class provides utility functions for various operations.
@@ -29,8 +30,8 @@ public:
      */
     static void write_to_file(const std::string& filename, const std::string& content){
         std::ofstream file;
-        file.open("./generated/" + filename);
-        file << content;
+        file.open("./generated/" + filename,std::ios::app);
+        file << content <<std::endl;
         file.close();
     }
 
@@ -45,5 +46,23 @@ public:
         auto end = std::chrono::steady_clock::now();
 
         return std::chrono::duration<double, std::nano>(end - start).count();
+    }
+
+    /**
+     * Generates a random vector of doubles.
+     *
+     * @return A vector of doubles containing random values between 1 and 100.
+     */
+    static inline std::vector<double> generate_random_vector(size_t size){
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<> dis(1, 10); // Adjust range as needed
+        std::vector<double> vec(size);
+        
+        for (int i = 0; i < size; ++i) {
+            vec[i] = dis(gen);
+        }
+        
+        return vec;
     }
 };

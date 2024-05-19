@@ -2,7 +2,7 @@
 #pragma once
 
 #include "../utils/Utils.h"
-#include "IMatrix.cpp"
+#include "Matrix.cpp"
 
 #include <vector>
 #include <iterator>
@@ -19,6 +19,21 @@ public:
 
     SparseBoolMatrix(const size_t numRows, const size_t numCols) {
         row_pointers.resize(numRows + 1, 0);
+    }
+
+    template<size_t N, size_t M>
+    SparseBoolMatrix(const Matrix<N,M,bool>& mx) {
+        size_t num_elements = 0;
+        this->row_pointers.push_back(num_elements);
+        for (size_t i = 0; i < N; ++i){
+            for (size_t j = 0; j < M; ++j){
+                if (mx[i,j]){
+                    this->col_indices.push_back(j);
+                    num_elements++;
+                }
+            }
+            this->row_pointers.push_back(num_elements);
+        }
     }
 
     SparseBoolMatrix(const std::vector<size_t>& col_indices, const std::vector<size_t>& row_pointers) {
@@ -50,5 +65,13 @@ public:
         ss << "Row counts: " << Utils::vec_to_str<size_t>(this->row_pointers) << std::endl;
 
         return ss.str();
+    }
+
+    const std::vector<size_t>& get_col_indices() const {
+        return col_indices;
+    }
+
+    const std::vector<size_t>& get_row_pointers() const {
+        return row_pointers;
     }
 };
