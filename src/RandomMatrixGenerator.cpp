@@ -1,15 +1,13 @@
 #pragma GCC diagnostic ignored "-Wpragma-once-outside-header"
 #pragma once
 
-#include <random>
-
 #include "datastructs/Matrix.cpp"
 #include "datastructs/RawBoolMatrix.cpp"
 #include "datastructs/SparseBoolMatrix.cpp"
+#include "MatrixType.cpp"
 
 template<size_t N, size_t M, NumericOrBoolean T>
 class RandomMatrixGenerator{
-    enum MatrixType { GENERIC, SPARSEBOOL, RAWBOOL };
     std::mt19937 mt;
 public:
     RandomMatrixGenerator(){}
@@ -18,30 +16,6 @@ public:
         this->mt = std::mt19937(seed);
     }
 
-    /**
-     * Generates a matrix based on the given sparsity and matrix type.
-     *
-     * @param sparsity The sparsity of the matrix.
-     * @param type The type of the matrix. Defaults to GENERIC.
-     *
-     * @return The generated matrix.
-     *
-     * @throws None
-     */
-    IMatrix<T> generate(float sparsity, MatrixType type = GENERIC){
-        switch (type) {
-        case GENERIC:
-            return generate_generic(sparsity);
-        case SPARSEBOOL:
-            return generate_sparse_bool(sparsity);
-        case RAWBOOL:
-            return generate_raw_bool(sparsity);
-        default:
-            break;
-        }
-    }
-
-private:
     Matrix<N,M,T> generate_generic(float sparsity){
         
         std::array<std::array<T, N>, M> data;
@@ -89,12 +63,12 @@ private:
         for (size_t i = 0; i < N; ++i){
             for (size_t j = 0; j < M; ++j){
                 if (distribution(this->mt) < sparsity)
-                    entries[i][j] = true;
+                    data[i][j] = true;
                 else
-                    entries[i][j] = false;
+                    data[i][j] = false;
             }
         }
 
-        return RawBoolMatrix<N,M>(entries);
+        return RawBoolMatrix<N,M>(data);
     }
 };

@@ -1,7 +1,7 @@
 #include <vector>
 #include <string>
 #include <gtest/gtest.h>
-#include "../src/utils/Utils.cpp" // Ensure this path is correct
+#include "../src/utils/Utils.cpp"
 
 TEST(UtilsTest, test_vec_to_str_with_integers) {
     std::vector<int> vec = {1, 2, 3};
@@ -19,10 +19,4 @@ TEST(UtilsTest, test_vec_to_str_with_string_vector) {
     std::vector<std::string> vec = {"hello", "world"};
     std::string expected = "[hello, world]";
     ASSERT_EQ(Utils::vec_to_str(vec), expected);
-}
-
-// main function to run the tests
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }

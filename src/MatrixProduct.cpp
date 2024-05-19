@@ -16,7 +16,21 @@ std::vector<double> MatrixProduct::naive_bin_matrix_vector(Matrix<N, M, T> m, st
 }
 
 std::vector<double> MatrixProduct::bin_matrix_vector(SparseBoolMatrix m, std::vector<double> vec){
+    auto ci = m.get_col_indices();
+    auto rp = m.get_row_pointers();
 
+    std::vector<double> result = std::vector<double>(vec.size(), 0.0);
+
+    for (size_t i = 1; i < rp.size(); ++i){
+        size_t diff = rp[i] - rp[i-1];
+        if (diff > 0){
+            for (size_t j = 0; j < diff; ++j){
+                result[i-1] += vec[ci[rp[i-1] + j]];
+            }
+        }
+    }
+
+    return result;
 }
 
 template <size_t N, size_t M>
