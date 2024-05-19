@@ -19,30 +19,34 @@
 template <size_t N, size_t M>
 class RawBoolMatrix : public IMatrix<bool> {
 private:
-    bool data[N*M];
+    double data[N*M];
 public:
     RawBoolMatrix() {}
 
     explicit RawBoolMatrix(bool initialValue) {
         for (size_t i = 0; i < N * M; ++i) {
-            data[i] = initialValue;
+            data[i] = initialValue ? 1.0 : 0.0;
         }
     }
 
-    explicit RawBoolMatrix(const std::array<std::array<bool, N>, M>& data){
+    explicit RawBoolMatrix(const std::array<std::array<bool, M>, N>& data){
         for (size_t i = 0; i < M; ++i) {
             for (size_t j = 0; j < N; ++j) {
-                this->data[i * N + j] = data[i][j];
+                this->data[i * N + j] = data[i][j] ? 1.0 : 0.0;
             }
         }
     }
 
     bool operator[](size_t row, size_t col){
-        return data[row * N +col];
+        return (data[row * N +col] == 1.0) ? true : false;
     }
 
     const bool operator[](size_t row, size_t col) const override {
-        return data[row * N + col];
+        return (data[row * N + col] == 1.0) ? true : false;
+    }
+
+    const double* get_data() const {
+        return data;
     }
 
     std::string to_string() const override {

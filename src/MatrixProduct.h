@@ -61,5 +61,5 @@ public:
      * @throws None
      */
     template <size_t N, size_t M>
-    static std::vector<double> blas_matrix_vector(RawBoolMatrix<N,M> m, std::array<double, M> vec);
+    static std::vector<double> blas_matrix_vector(RawBoolMatrix<N,M> m, std::vector<double> vec);
 };
