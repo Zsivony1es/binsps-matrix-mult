@@ -13,11 +13,11 @@ concept NumericOrBoolean = std::is_arithmetic_v<T> || std::same_as<T, bool>;
 template <size_t N, size_t M, NumericOrBoolean T>
 class Matrix : public IMatrix<T> {
 private:
-    std::array<std::array<T, N>, M> data;
+    std::array<std::array<T, M>, N> data;
 public:
     Matrix() {}
 
-    explicit Matrix(const std::array<std::array<T, N>, M>& data) : data(data) {}
+    explicit Matrix(const std::array<std::array<T, M>, N>& data) : data(data) {}
 
     explicit Matrix(const T& initialValue) {
         for (size_t i = 0; i < M; ++i) {

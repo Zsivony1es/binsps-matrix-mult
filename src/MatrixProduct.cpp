@@ -19,7 +19,7 @@ std::vector<double> MatrixProduct::bin_matrix_vector(SparseBoolMatrix m, std::ve
     auto ci = m.get_col_indices();
     auto rp = m.get_row_pointers();
 
-    std::vector<double> result = std::vector<double>(vec.size(), 0.0);
+    std::vector<double> result = std::vector<double>(rp.size() - 1, 0.0);
 
     for (size_t i = 1; i < rp.size(); ++i){
         size_t diff = rp[i] - rp[i-1];
@@ -34,11 +34,16 @@ std::vector<double> MatrixProduct::bin_matrix_vector(SparseBoolMatrix m, std::ve
 }
 
 template <size_t N, size_t M>
-std::vector<double> MatrixProduct::blas_matrix_vector(RawBoolMatrix<N,M> m, std::array<double, M> vec){
+std::vector<double> MatrixProduct::blas_matrix_vector(RawBoolMatrix<N,M> m, std::vector<double> vec){
+
+    if (vec.size() != M){
+        throw std::invalid_argument("Vector must have length M!");
+    }
+
     double doubleMatrix[N * M];
     for (size_t i = 0; i < N; ++i) {
         for (size_t j = 0; j < M; ++j) {
-            doubleMatrix[i * M + j] = static_cast<double>(m.data[i][j]);
+            doubleMatrix[i * M + j] = static_cast<double>(m[i,j]);
         }
     }
 
@@ -47,11 +52,11 @@ std::vector<double> MatrixProduct::blas_matrix_vector(RawBoolMatrix<N,M> m, std:
     // BLAS parameters
     const double alpha = 1.0;
     const double beta = 0.0;
-    const int lda = M; // Leading dimension of the matrix
-    const int incX = 1; // Increment for elements of x
-    const int incY = 1; // Increment for elements of y
+    const int leading_dim = M;
+    const int incX = 1;
+    const int incY = 1;
 
-    cblas_dgemv(CblasRowMajor, CblasNoTrans, N, M, alpha, doubleMatrix, lda, vec.data(), incX, beta, result.data(), incY);
+    cblas_dgemv(CblasRowMajor, CblasNoTrans, N, M, alpha, m.get_data(), leading_dim, vec.data(), incX, beta, result.data(), incY);
 
     return result;
 }

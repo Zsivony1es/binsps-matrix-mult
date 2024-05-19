@@ -8,6 +8,11 @@
 #include <chrono>
 #include <fstream>
 #include <random>
+#include <iostream>
+
+#define ANSI_TXT_GRN "\033[0;32m"
+#define ANSI_TXT_MGT "\033[0;35m"
+#define ANSI_TXT_DFT "\033[0;0m" // Console default
 
 /**
  * @brief The Utils class provides utility functions for various operations.
@@ -64,5 +69,9 @@ public:
         }
         
         return vec;
+    }
+
+    static inline void test_debug(std::string str){
+        std::cout << ANSI_TXT_GRN << "[   DEBUG  ] " << ANSI_TXT_DFT << str << std::endl;
     }
 };
