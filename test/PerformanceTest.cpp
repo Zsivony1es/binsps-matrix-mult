@@ -12,12 +12,12 @@
 
 TEST(MatrixPerformanceTest, MatrixPerformanceTest) {
 
-    const size_t N = 500;
+    const size_t N = 1000;
     const size_t M = 1000;
 
-    double sparsity = 1.0 / static_cast<double>(N+M);
+    double sparsity = 1.0 / static_cast<double>(10);
 
-    Utils::test_debug("Checkpoint 1, sparsity: " + std::to_string(sparsity));
+    Utils::test_debug("Sparsity: " + std::to_string(sparsity));
 
     RandomMatrixGenerator<N,M,bool> generator;
     Matrix<N,M,bool> inputMatrix = generator.generate_generic(sparsity);    
@@ -71,7 +71,7 @@ TEST(MatrixPerformanceTest, MatrixPerformanceTest) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << naive_time/opt_time << "," << blas_time/opt_time;
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
