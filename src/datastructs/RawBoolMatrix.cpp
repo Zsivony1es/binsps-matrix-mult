@@ -1,7 +1,7 @@
 #pragma GCC diagnostic ignored "-Wpragma-once-outside-header"
 #pragma once
 
-#include "IMatrix.cpp"
+#include "Matrix.cpp"
 
 #include <string>
 #include <sstream>
@@ -33,6 +33,14 @@ public:
         for (size_t i = 0; i < N; ++i) {
             for (size_t j = 0; j < M; ++j) {
                 this->data[i * M + j] = data[i][j] ? 1.0 : 0.0;
+            }
+        }
+    }
+
+    explicit RawBoolMatrix(const Matrix<N,M,bool>& data){
+        for (size_t i = 0; i < N; ++i) {
+            for (size_t j = 0; j < M; ++j) {
+                this->data[i * M + j] = data[i,j] ? 1.0 : 0.0;
             }
         }
     }

@@ -18,7 +18,7 @@ public:
 
     Matrix<N,M,T> generate_generic(float sparsity){
         
-        std::array<std::array<T, N>, M> data;
+        std::array<std::array<T, M>, N> data;
         std::uniform_real_distribution<double> distribution(0.0, 1.0);
 
         for (size_t i = 0; i < N; ++i){
