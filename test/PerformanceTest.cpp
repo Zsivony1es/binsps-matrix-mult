@@ -4,6 +4,7 @@
 #include <vector>
 #include <random>
 #include <cmath>
+#include <sstream>
 
 #include "../src/RandomMatrixGenerator.cpp"
 #include "../src/MatrixType.cpp"
@@ -14,9 +15,9 @@ TEST(MatrixPerformanceTest, MatrixPerformanceTest) {
     const size_t N = 2000;
     const size_t M = 1000;
 
-    double sparsity = 1 / N;
+    double sparsity = 1.0 / static_cast<double>(N+M);
 
-    Utils::test_debug("Checkpoint 1");
+    Utils::test_debug("Checkpoint 1, sparsity: " + std::to_string(sparsity));
 
     RandomMatrixGenerator<N,M,bool> generator;
     Matrix<N,M,bool> inputMatrix = generator.generate_generic(sparsity);    
@@ -68,10 +69,9 @@ TEST(MatrixPerformanceTest, MatrixPerformanceTest) {
     Utils::test_debug("Product with BLAS finished performance test calculations.");
     Utils::test_debug("Writing to performance_results.csv...");
 
-    std::string data_to_write = std::to_string(N) + "," + std::to_string(M) + "," 
-                                + std::to_string(sparsity) + "," + std::to_string(naive_time) + "," 
-                                + std::to_string(opt_time) + "," + std::to_string(blas_time);
+    std::stringstream ss;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << opt_time << "," << blas_time;
 
     Utils::create_perf_test_header_if_not_exists();
-    Utils::append_to_file("performance_results.csv", data_to_write);
+    Utils::append_to_file("performance_results.csv", ss.str());
 }
