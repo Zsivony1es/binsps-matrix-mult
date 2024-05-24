@@ -30,9 +30,9 @@ public:
     }
 
     explicit RawBoolMatrix(const std::array<std::array<bool, M>, N>& data){
-        for (size_t i = 0; i < M; ++i) {
-            for (size_t j = 0; j < N; ++j) {
-                this->data[i * N + j] = data[i][j] ? 1.0 : 0.0;
+        for (size_t i = 0; i < N; ++i) {
+            for (size_t j = 0; j < M; ++j) {
+                this->data[i * M + j] = data[i][j] ? 1.0 : 0.0;
             }
         }
     }
