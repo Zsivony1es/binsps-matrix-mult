@@ -10,16 +10,28 @@
 #include "../src/MatrixType.cpp"
 #include "../src/MatrixProduct.cpp"
 
-TEST(MatrixPerformanceTest, MatrixPerformanceTest) {
+class SparsityPerformanceTests :
+        public ::testing::TestWithParam<double>{
+protected:
+    static constexpr size_t N = 1000;
+    static constexpr size_t M = 1000;
+    const int seed = 0;
+    RandomMatrixGenerator<N,M,bool> generator; 
 
-    const size_t N = 1000;
-    const size_t M = 1000;
+    void SetUp() override {
+        Utils::test_debug("Setting up SparsityPerformanceTests...");
+        generator = RandomMatrixGenerator<N,M,bool>(seed);
+    }
 
-    double sparsity = 1.0 / static_cast<double>(10);
+    void TearDown() override {}
+};
+
+TEST_P(SparsityPerformanceTests, SparsityPerformanceTest) {
+
+    double sparsity = GetParam();
 
     Utils::test_debug("Sparsity: " + std::to_string(sparsity));
 
-    RandomMatrixGenerator<N,M,bool> generator;
     Matrix<N,M,bool> inputMatrix = generator.generate_generic(sparsity);    
     
     std::vector<double> randomVector = Utils::generate_random_vector(M);
@@ -31,8 +43,7 @@ TEST(MatrixPerformanceTest, MatrixPerformanceTest) {
             }
     );
 
-    Utils::test_debug("Naive product finished performance test calculations.");
-
+    // =============================
     // ==== Enhanced Algorithms ====
     // =============================
 
@@ -50,8 +61,6 @@ TEST(MatrixPerformanceTest, MatrixPerformanceTest) {
         EXPECT_EQ(resultVec.at(i), correctVec.at(i));
     }
 
-    Utils::test_debug("Product with optimized data structure finished performance test calculations.");
-
     // Multiplication with BLAS
     resultVec.clear();
     RawBoolMatrix<N,M> raw_bool_matrix = RawBoolMatrix<N,M>(inputMatrix);
@@ -66,9 +75,6 @@ TEST(MatrixPerformanceTest, MatrixPerformanceTest) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
-    Utils::test_debug("Product with BLAS finished performance test calculations.");
-    Utils::test_debug("Writing to performance_results.csv...");
-
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
         << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
@@ -76,3 +82,9 @@ TEST(MatrixPerformanceTest, MatrixPerformanceTest) {
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
 }
+
+INSTANTIATE_TEST_SUITE_P(
+    SparsityTests,
+    SparsityPerformanceTests,
+    ::testing::Values(0.01, 0.005, 0.001, 0.0005, 0.0001)
+);

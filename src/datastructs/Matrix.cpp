@@ -45,4 +45,12 @@ public:
         }
         return ss.str();
     }
+
+    const size_t get_row_count() const {
+        return N;
+    }
+
+    const size_t get_col_count() const {
+        return M;
+    }
 };
