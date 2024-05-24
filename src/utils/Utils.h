@@ -42,7 +42,7 @@ public:
 
     static inline void create_perf_test_header_if_not_exists(){
         std::string performance_results_path = "./generated/performance_results.csv";
-        std::string header = "N,M,sparsity,naive_time,opt_time,blas_time";
+        std::string header = "N,M,sparsity,naive_time,blas_time,opt_time,naive_speedup,blas_speedup";
         std::ifstream f(performance_results_path.c_str());
 
         if (!f.good()) { // Check if file is already created

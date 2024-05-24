@@ -12,7 +12,7 @@
 
 TEST(MatrixPerformanceTest, MatrixPerformanceTest) {
 
-    const size_t N = 2000;
+    const size_t N = 500;
     const size_t M = 1000;
 
     double sparsity = 1.0 / static_cast<double>(N+M);
@@ -70,7 +70,8 @@ TEST(MatrixPerformanceTest, MatrixPerformanceTest) {
     Utils::test_debug("Writing to performance_results.csv...");
 
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << opt_time << "," << blas_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
+        << naive_time/opt_time << "," << blas_time/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
