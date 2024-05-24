@@ -154,6 +154,9 @@ TEST(ProductTest, test_blas_matrix_multiplication_for_binary_values) {
     std::vector<double> resultVec = {};
     resultVec = MatrixProduct::blas_matrix_vector(matrix, inputVector);
 
+    Utils::test_debug("Correct: " + Utils::vec_to_str(correctVec));
+    Utils::test_debug("Result: " + Utils::vec_to_str(resultVec));
+
     ASSERT_EQ(resultVec.size(), correctVec.size());
     for (int i = 0; i < resultVec.size(); i++){
         ASSERT_EQ(resultVec.at(i), correctVec.at(i));
