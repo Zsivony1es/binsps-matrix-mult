@@ -41,6 +41,8 @@ public:
         std::copy(row_pointers.begin(), row_pointers.end(), std::back_inserter(this->row_pointers));
     }
 
+    ~SparseBoolMatrix() {}
+
     /**
      * Gets the value at the specified row and column.
      *
