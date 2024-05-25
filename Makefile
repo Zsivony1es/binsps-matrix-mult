@@ -5,6 +5,7 @@ CXXFLAGS := -Wall -std=c++2b
 # Directories
 SRC_DIR := src
 TEST_DIR := test
+GENERATED_DIR := generated
 
 # Source and object files
 SRCS := $(wildcard $(SRC_DIR)/**/*.cpp)
@@ -55,4 +56,4 @@ main.o: main.cpp
 	$(CXX) $(CXXFLAGS) $(BLAS_INCLUDE) -c -o $@ $<
 
 clean:
-	rm -f $(TARGET) $(TEST_TARGET) $(SRC_DIR)/**/*.o $(SRC_DIR)/*.o $(TEST_DIR)/*.o $(TEST_DIR)/**/*.o main.o
+	rm -f $(TARGET) $(TEST_TARGET) $(SRC_DIR)/**/*.o $(SRC_DIR)/*.o $(TEST_DIR)/*.o $(TEST_DIR)/**/*.o main.o $(GENERATED_DIR)/*.csv

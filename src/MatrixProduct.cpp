@@ -36,20 +36,6 @@ std::vector<double> MatrixProduct::bin_matrix_vector(SparseBoolMatrix m, std::ve
 template <size_t N, size_t M>
 std::vector<double> MatrixProduct::blas_matrix_vector(RawBoolMatrix<N,M> m, std::vector<double> vec){
 
-    if (vec.empty()){
-        throw std::invalid_argument("Vector must not be empty!");
-    }
-
-    if (vec.size() != M){
-        throw std::invalid_argument("Vector must have length M!");
-    }
-
-    if (!m.get_data()){
-        throw std::invalid_argument("Matrix must not be null!");
-    }
-
-    double doubleMatrix[N*M];
-    std::copy(m.get_data(), m.get_data() + N * M, doubleMatrix);
     std::vector<double> result(N, 0.0);
 
     try {
@@ -60,11 +46,16 @@ std::vector<double> MatrixProduct::blas_matrix_vector(RawBoolMatrix<N,M> m, std:
         const int incX = 1;
         const int incY = 1;
 
-        cblas_dgemv(CblasRowMajor, CblasNoTrans, N, M, alpha, doubleMatrix, leading_dim, vec.data(), incX, beta, result.data(), incY);
+        cblas_dgemv(CblasRowMajor, CblasNoTrans, N, M, alpha, m.get_data(), leading_dim, vec.data(), incX, beta, result.data(), incY);
     } catch (const std::exception& e){
         std::string message = "Error while performing BLAS matrix-vector multiplication: " + std::string(e.what());
         throw std::invalid_argument(message);
     }
 
     return result;
+}
+
+template <size_t N, size_t M>
+std::vector<double> MatrixProduct::ps_bin_matrix_vector(RawBoolMatrix<N, M> m, std::vector<double> vec){
+    return std::vector<double>();
 }

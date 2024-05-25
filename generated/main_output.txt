@@ -1,2 +1,0 @@
-Result: []
-Time: 6042ns
