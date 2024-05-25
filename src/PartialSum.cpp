@@ -1,4 +1,5 @@
 #pragma once
+#pragma GCC diagnostic ignored "-Wshift-count-overflow"
 
 #include <cmath>
 

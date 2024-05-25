@@ -13,8 +13,6 @@
 class DimensionPerformanceTests :
         public ::testing::Test{
 protected:
-    const int seed = 0;
-
     void SetUp() override {}
 
     void TearDown() override {}
@@ -70,9 +68,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -128,9 +140,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -186,9 +212,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_200_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -244,9 +284,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_300_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -302,9 +356,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_400_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -360,9 +428,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_500_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -418,9 +500,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_600_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -476,9 +572,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_700_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -534,9 +644,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_800_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -592,9 +716,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_900_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -650,9 +788,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1000_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -708,9 +860,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1500_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -766,9 +932,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_2000_50) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -824,9 +1004,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_100) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -882,9 +1076,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_200) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -940,9 +1148,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_300) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -998,9 +1220,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_400) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1056,9 +1292,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_500) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1114,9 +1364,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_600) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1172,9 +1436,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_700) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1230,9 +1508,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_800) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1288,9 +1580,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_900) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1346,9 +1652,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_1000) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1404,9 +1724,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_1500) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1462,9 +1796,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_2000) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1520,9 +1868,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_100) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1578,9 +1940,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_200_200) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1636,9 +2012,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_300_300) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1694,9 +2084,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_400_400) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1752,9 +2156,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_500_500) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1810,9 +2228,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_600_600) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1868,9 +2300,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_700_700) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1926,9 +2372,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_800_800) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1984,9 +2444,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_900_900) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -2042,9 +2516,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1000_1000) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -2100,9 +2588,23 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1500_1500) {
         EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
     }
 
+    // Multiplication with Partial Sums
+    resultVec.clear();
+    BitsetMatrix<N,M> bitset_matrix = BitsetMatrix<N,M>(inputMatrix);
+    uint ps_time = Utils::time_exec(
+        [&resultVec, &bitset_matrix, &randomVector](){
+            resultVec = MatrixProduct::ps_bin_matrix_vector(bitset_matrix, randomVector);
+            }
+    );
+
+    EXPECT_EQ(resultVec.size(), correctVec.size());
+    for(int i = 0; i<resultVec.size();i++){
+        EXPECT_LT(std::abs(resultVec.at(i) - correctVec.at(i)), 0.0001);
+    }
+
     std::stringstream ss;
-    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+    ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << ps_time << "," << opt_time << "," 
+        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time << "," << static_cast<double>(ps_time)/opt_time;
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
