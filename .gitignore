@@ -2,3 +2,4 @@ Paper
 *.o
 run
 run_tests
+generated/*
