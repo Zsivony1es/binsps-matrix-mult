@@ -24,7 +24,15 @@ public:
     BitsetMatrix() {}
 
     explicit BitsetMatrix(bool initialValue) {
-        data |= initialValue;
+        if (initialValue) {
+            data |= true;
+        } else {
+            data &= false;
+        }
+    }
+
+    explicit BitsetMatrix(std::bitset<N*M> data) {
+        this->data = data;
     }
 
     explicit BitsetMatrix(const std::array<std::array<bool, M>, N>& data){
