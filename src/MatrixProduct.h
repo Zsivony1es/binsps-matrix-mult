@@ -62,4 +62,20 @@ public:
      */
     template <size_t N, size_t M>
     static std::vector<double> blas_matrix_vector(RawBoolMatrix<N,M> m, std::vector<double> vec);
+
+    /**
+     * Computes the matrix-vector product using the partial sums method
+     *
+     * @tparam N The number of rows in the binary matrix.
+     * @tparam M The number of columns in the binary matrix and the size of the vector.
+     *
+     * @param m The sparse binary matrix.
+     * @param vec The vector.
+     *
+     * @return The resulting vector.
+     *
+     * @throws None
+     */
+    template <size_t N, size_t M>
+    static std::vector<double> ps_bin_matrix_vector(RawBoolMatrix<N, M> m, std::vector<double> vec);
 };
