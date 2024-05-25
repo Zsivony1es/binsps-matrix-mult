@@ -3,6 +3,7 @@
 #include "datastructs/SparseMatrix.cpp"
 #include "datastructs/SparseBoolMatrix.cpp"
 #include "datastructs/RawBoolMatrix.cpp"
+#include "datastructs/BitsetMatrix.cpp"
 #include "PartialSum.cpp"
 
 /**
@@ -78,5 +79,5 @@ public:
      * @throws None
      */
     template <size_t N, size_t M>
-    static std::vector<double> ps_bin_matrix_vector(RawBoolMatrix<N, M> m, std::vector<double> vec);
+    static std::vector<double> ps_bin_matrix_vector(BitsetMatrix<N, M> m, std::vector<double> vec);
 };

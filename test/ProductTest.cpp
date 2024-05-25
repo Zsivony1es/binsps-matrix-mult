@@ -2,7 +2,7 @@
 
 #include "../src/MatrixProduct.cpp"
 
-TEST(ProductTest, test_naive_square_matrix_multiplication_for_binary_values) {
+TEST(ProductTest, test_naive_square_matrix_multiplication) {
     
     std::vector<double> randomVector = {1,2,3,4,5};
     std::array<std::array<bool, 5>, 5> matrixData = {{
@@ -25,7 +25,7 @@ TEST(ProductTest, test_naive_square_matrix_multiplication_for_binary_values) {
     }
 }
 
-TEST(ProductTest, test_naive_matrix_multiplication_for_binary_values) {
+TEST(ProductTest, test_naive_matrix_multiplication) {
     
     std::vector<double> randomVector = {1,2,3,4,5};
     std::array<std::array<bool, 5>, 10> matrixData = {{
@@ -53,7 +53,7 @@ TEST(ProductTest, test_naive_matrix_multiplication_for_binary_values) {
     }
 }
 
-TEST(ProductTest, test_sparse_square_binary_matrix_multiplication_for_binary_values) {
+TEST(ProductTest, test_sparse_square_binary_matrix_multiplication) {
     
     std::vector<double> inputVector = {1,2,3,4,5};
     std::array<std::array<bool, 5>, 5> matrixData = {{
@@ -77,7 +77,7 @@ TEST(ProductTest, test_sparse_square_binary_matrix_multiplication_for_binary_val
     }
 }
 
-TEST(ProductTest, test_sparse_binary_matrix_multiplication_for_binary_values) {
+TEST(ProductTest, test_sparse_binary_matrix_multiplication) {
     
     std::array<std::array<bool, 5>, 10> matrixData = {{
         {true, false, true, true, false},
@@ -109,7 +109,7 @@ TEST(ProductTest, test_sparse_binary_matrix_multiplication_for_binary_values) {
     }
 }
 
-TEST(ProductTest, test_blas_square_matrix_multiplication_for_binary_values) {
+TEST(ProductTest, test_blas_square_matrix_multiplication) {
 
     std::vector<double> inputVector = {1,2,3,4,5};
     std::array<std::array<bool, 5>, 5> matrixData = {{
@@ -132,7 +132,7 @@ TEST(ProductTest, test_blas_square_matrix_multiplication_for_binary_values) {
     }
 }
 
-TEST(ProductTest, test_blas_matrix_multiplication_for_binary_values) {
+TEST(ProductTest, test_blas_matrix_multiplication) {
 
     std::vector<double> inputVector = {1,2,3,4,5};
     std::array<std::array<bool, 5>, 10> matrixData = {{
@@ -153,6 +153,61 @@ TEST(ProductTest, test_blas_matrix_multiplication_for_binary_values) {
 
     std::vector<double> resultVec = {};
     resultVec = MatrixProduct::blas_matrix_vector(matrix, inputVector);
+
+    Utils::test_debug("Correct: " + Utils::vec_to_str(correctVec));
+    Utils::test_debug("Result: " + Utils::vec_to_str(resultVec));
+
+    ASSERT_EQ(resultVec.size(), correctVec.size());
+    for (int i = 0; i < resultVec.size(); i++){
+        ASSERT_EQ(resultVec.at(i), correctVec.at(i));
+    }
+}
+
+
+TEST(ProductTest, test_ps_square_matrix_multiplication) {
+
+    std::vector<double> inputVector = {1,2,3,4,5};
+    std::array<std::array<bool, 5>, 5> matrixData = {{
+        {true, false, true, true, false},
+        {false, false, false, false, true},
+        {false, true, false, false, false},
+        {false, false, false, true, false},
+        {false, false, false, false, true}
+    }};
+
+    const BitsetMatrix<5,5> matrix(matrixData);
+    const std::vector<double> correctVec = {8,5,2,4,5};
+
+    std::vector<double> resultVec = {};
+    resultVec = MatrixProduct::ps_bin_matrix_vector(matrix, inputVector);
+
+    ASSERT_EQ(resultVec.size(), correctVec.size());
+    for (int i = 0; i < resultVec.size(); i++){
+        ASSERT_EQ(resultVec.at(i), correctVec.at(i));
+    }
+}
+
+TEST(ProductTest, test_ps_matrix_multiplication) {
+
+    std::vector<double> inputVector = {1,2,3,4,5};
+    std::array<std::array<bool, 5>, 10> matrixData = {{
+        {true, false, true, true, false},
+        {false, false, false, false, true},
+        {false, true, false, false, false},
+        {false, false, false, true, false},
+        {false, false, false, false, true},
+        {true, false, true, true, false},
+        {false, false, false, false, true},
+        {false, true, false, false, false},
+        {false, false, false, true, false},
+        {false, false, false, false, true}
+    }};
+
+    const BitsetMatrix<10,5> matrix(matrixData);
+    const std::vector<double> correctVec = {8,5,2,4,5,8,5,2,4,5};
+
+    std::vector<double> resultVec = {};
+    resultVec = MatrixProduct::ps_bin_matrix_vector(matrix, inputVector);
 
     Utils::test_debug("Correct: " + Utils::vec_to_str(correctVec));
     Utils::test_debug("Result: " + Utils::vec_to_str(resultVec));
