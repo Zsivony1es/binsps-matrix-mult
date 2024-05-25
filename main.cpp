@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     ss << "Result: " << Utils::vec_to_str<double>(result) << std::endl;
     ss << "Time: " << time << "ns" << std::endl;
 
-    Utils::write_to_file("main_output.txt", ss.str());
+    Utils::append_to_file("main_output.txt", ss.str());
 
     return 0;
 }

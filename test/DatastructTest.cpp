@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "../src/datastructs/SparseBoolMatrix.cpp"
+#include "../src/datastructs/BitsetMatrix.cpp"
 
 TEST(DatastructTest, test_sparse_binary_constructor_with_lists) {
     std::array<std::array<bool, 5>, 5> matrixData = {{
@@ -45,6 +46,25 @@ TEST(DatastructTest, test_sparse_binary_constructor_with_matrix) {
     for(size_t i = 0; i<matrixData.size();i++){
         for(size_t j = 0; j<matrixData.at(i).size();j++){
             bool resultValue = sparse_bool_matrix[i,j];
+            ASSERT_EQ(matrixData.at(i).at(j), resultValue);
+        } 
+    }
+}
+
+TEST(DatastructTest, test_bitset_matrix_constructor) {
+    std::array<std::array<bool, 5>, 5> matrixData = {{
+        {true, false, true, true, false},
+        {false, false, false, false, true},
+        {false, true, false, false, false},
+        {false, false, false, true, false},
+        {false, false, false, false, true}
+    }};
+
+    BitsetMatrix<5,5> matrix = BitsetMatrix<5,5>(matrixData);
+
+    for(size_t i = 0; i < matrixData.size(); i++){
+        for(size_t j = 0; j < matrixData.at(i).size(); j++){
+            bool resultValue = matrix[i,j];
             ASSERT_EQ(matrixData.at(i).at(j), resultValue);
         } 
     }

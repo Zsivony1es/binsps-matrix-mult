@@ -3,6 +3,7 @@
 #include "datastructs/SparseMatrix.cpp"
 #include "datastructs/SparseBoolMatrix.cpp"
 #include "datastructs/RawBoolMatrix.cpp"
+#include "PartialSum.cpp"
 
 /**
  * @brief The MatrixProduct class represents a collection of matrix product operations.
