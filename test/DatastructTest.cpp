@@ -51,7 +51,7 @@ TEST(DatastructTest, test_sparse_binary_constructor_with_matrix) {
     }
 }
 
-TEST(DatastructTest, test_bitset_matrix_constructor) {
+TEST(DatastructTest, test_bitset_matrix_array_constructor) {
     std::array<std::array<bool, 5>, 5> matrixData = {{
         {true, false, true, true, false},
         {false, false, false, false, true},
@@ -65,6 +65,26 @@ TEST(DatastructTest, test_bitset_matrix_constructor) {
     for(size_t i = 0; i < matrixData.size(); i++){
         for(size_t j = 0; j < matrixData.at(i).size(); j++){
             bool resultValue = matrix[i,j];
+            ASSERT_EQ(matrixData.at(i).at(j), resultValue);
+        } 
+    }
+}
+
+TEST(DatastructTest, test_bitset_matrix_matrix_constructor) {
+    std::array<std::array<bool, 5>, 5> matrixData = {{
+        {true, false, true, true, false},
+        {false, false, false, false, true},
+        {false, true, false, false, false},
+        {false, false, false, true, false},
+        {false, false, false, false, true}
+    }};
+
+    Matrix<5,5,bool> matrix = Matrix<5,5,bool>(matrixData);
+    BitsetMatrix<5,5> bm = BitsetMatrix<5,5>(matrix);
+
+    for(size_t i = 0; i < matrixData.size(); i++){
+        for(size_t j = 0; j < matrixData.at(i).size(); j++){
+            bool resultValue = bm[i,j];
             ASSERT_EQ(matrixData.at(i).at(j), resultValue);
         } 
     }

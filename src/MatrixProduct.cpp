@@ -58,7 +58,7 @@ std::vector<double> MatrixProduct::blas_matrix_vector(RawBoolMatrix<N,M> m, std:
 template <size_t N, size_t M>
 std::vector<double> MatrixProduct::ps_bin_matrix_vector(BitsetMatrix<N, M> m, std::vector<double> vec){
 
-    // Analyze what value would be good here
+    // TODO: Analyze what value would be good here
     size_t max_el_count = std::ceil(std::log2(M));
 
     std::unordered_map<std::bitset<M>, double> partial_sums = PartialSum::precompute_partial_sums<M>(vec, max_el_count);
