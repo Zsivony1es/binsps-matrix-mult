@@ -13,8 +13,8 @@
 class ThresholdProductPerformanceTests :
         public ::testing::TestWithParam<double>{
 protected:
-    static constexpr size_t N = 30;
-    static constexpr size_t M = 30;
+    static constexpr size_t N = 100;
+    static constexpr size_t M = 100;
     const int seed = 0;
     RandomMatrixGenerator<N,M,bool> generator; 
 
