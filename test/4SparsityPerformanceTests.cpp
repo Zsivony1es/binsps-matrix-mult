@@ -39,7 +39,7 @@ TEST_P(SparsityPerformanceTests, SparsityPerformanceTest) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -77,10 +77,12 @@ TEST_P(SparsityPerformanceTests, SparsityPerformanceTest) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
-    Utils::create_perf_test_header_if_not_exists();
-    Utils::append_to_file("performance_results.csv", ss.str());
+    Utils::create_perf_test_header_if_not_exists("sparsity_performance_results.csv");
+    Utils::append_to_file("sparsity_performance_results.csv", ss.str());
 }
 
 INSTANTIATE_TEST_SUITE_P(

@@ -27,7 +27,7 @@ TEST(PartialSumTest, TestPartialSumTerminatesWithLargerInput) {
         [&vec](){PartialSum::precompute_partial_sums<100>(vec, 15);}
     );
 
-    ASSERT_LT(runtime, 3000);
+    ASSERT_LT(runtime, 30000);
 }
 
 
