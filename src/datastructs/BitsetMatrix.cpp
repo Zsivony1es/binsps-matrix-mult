@@ -52,11 +52,11 @@ public:
     }
 
     bool operator[](size_t row, size_t col){
-        return data[row * N +col];
+        return data[row * N + col];
     }
 
     const bool operator[](size_t row, size_t col) const override {
-        return data[row * N +col];
+        return data[row * N + col];
     }
 
     std::bitset<M> get_row(size_t index) {

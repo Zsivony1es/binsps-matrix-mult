@@ -22,7 +22,7 @@ public:
                                                                               size_t max_element_count = 0) {
         if (max_element_count == 0) {
             max_element_count = N;
-        }                         
+        }
 
         int total_comb = 1 << N;
         std::unordered_map<std::bitset<N>, double> result;
