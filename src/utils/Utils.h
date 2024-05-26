@@ -29,6 +29,16 @@ public:
     static std::string vec_to_str(const std::vector<T>& v);
 
     /**
+     * @brief Converts an unordered_map to a string representation.
+     * @tparam T The type of the keys in the map.
+     * @tparam U The type of the values in the map.
+     * @param m The map to be converted.
+     * @return The string representation of the map.
+     */
+    template <typename T, typename U>
+    static std::string map_to_str(const std::unordered_map<T, U>& m);
+
+    /**
      * @brief Writes a string to a file.
      * @param filename The name of the file to be written to.
      * @param content The content to be written to the file.
@@ -71,10 +81,10 @@ public:
      *
      * @return A vector of doubles containing random values between 1 and 100.
      */
-    static inline std::vector<double> generate_random_vector(size_t size){
+    static inline std::vector<double> generate_random_vector(size_t size, double min = 0.0, double max = 1.0){
         std::random_device rd;
         std::mt19937 gen(rd());
-        std::uniform_real_distribution<> dis(1, 10); // Adjust range as needed
+        std::uniform_real_distribution<double> dis(min, max);
         std::vector<double> vec(size);
         
         for (int i = 0; i < size; ++i) {

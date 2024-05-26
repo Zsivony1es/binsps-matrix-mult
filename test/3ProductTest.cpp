@@ -100,9 +100,6 @@ TEST(ProductTest, test_sparse_binary_matrix_multiplication) {
     std::vector<double> resultVec = {};
     resultVec = MatrixProduct::bin_matrix_vector(sparse_bool_matrix, inputVector);
 
-    Utils::test_debug("correctVec size: " + std::to_string(correctVec.size()));
-    Utils::test_debug("resultVec size: " + std::to_string(resultVec.size()));
-
     ASSERT_EQ(resultVec.size(), correctVec.size());
     for (int i = 0; i < resultVec.size(); i++){
         ASSERT_EQ(resultVec.at(i), correctVec.at(i));
@@ -154,9 +151,6 @@ TEST(ProductTest, test_blas_matrix_multiplication) {
     std::vector<double> resultVec = {};
     resultVec = MatrixProduct::blas_matrix_vector(matrix, inputVector);
 
-    Utils::test_debug("Correct: " + Utils::vec_to_str(correctVec));
-    Utils::test_debug("Result: " + Utils::vec_to_str(resultVec));
-
     ASSERT_EQ(resultVec.size(), correctVec.size());
     for (int i = 0; i < resultVec.size(); i++){
         ASSERT_EQ(resultVec.at(i), correctVec.at(i));
@@ -176,14 +170,16 @@ TEST(ProductTest, test_ps_square_matrix_multiplication) {
     }};
 
     const BitsetMatrix<5,5> matrix(matrixData);
+    std::vector<BitsetMatrix<5,5>> matrixList;
+    matrixList.push_back(matrix);
     const std::vector<double> correctVec = {8,5,2,4,5};
 
-    std::vector<double> resultVec = {};
-    resultVec = MatrixProduct::ps_bin_matrix_vector(matrix, inputVector);
+    std::vector<std::vector<double>> resultVec = {};
+    resultVec = MatrixProduct::ps_bin_matrix_vector(matrixList, inputVector);
 
-    ASSERT_EQ(resultVec.size(), correctVec.size());
-    for (int i = 0; i < resultVec.size(); i++){
-        ASSERT_EQ(resultVec.at(i), correctVec.at(i));
+    ASSERT_EQ(resultVec.at(0).size(), correctVec.size());
+    for (int i = 0; i < correctVec.size(); i++){
+        ASSERT_EQ(resultVec.at(0).at(i), correctVec.at(i));
     }
 }
 
@@ -204,16 +200,15 @@ TEST(ProductTest, test_ps_matrix_multiplication) {
     }};
 
     const BitsetMatrix<10,5> matrix(matrixData);
+    std::vector<BitsetMatrix<10,5>> matrixList;
+    matrixList.push_back(matrix);
     const std::vector<double> correctVec = {8,5,2,4,5,8,5,2,4,5};
 
-    std::vector<double> resultVec = {};
-    resultVec = MatrixProduct::ps_bin_matrix_vector(matrix, inputVector);
+    std::vector<std::vector<double>> resultVec = {};
+    resultVec = MatrixProduct::ps_bin_matrix_vector(matrixList, inputVector);
 
-    Utils::test_debug("Correct: " + Utils::vec_to_str(correctVec));
-    Utils::test_debug("Result: " + Utils::vec_to_str(resultVec));
-
-    ASSERT_EQ(resultVec.size(), correctVec.size());
-    for (int i = 0; i < resultVec.size(); i++){
-        ASSERT_EQ(resultVec.at(i), correctVec.at(i));
+    ASSERT_EQ(resultVec.at(0).size(), correctVec.size());
+    for (int i = 0; i < correctVec.size(); i++){
+        ASSERT_EQ(resultVec.at(0).at(i), correctVec.at(i));
     }
 }

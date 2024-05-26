@@ -18,6 +18,7 @@ TEST_OBJS := $(patsubst $(TEST_DIR)/%.cpp, $(TEST_DIR)/%.o, $(TEST_SRCS))
 GTEST_DIR := /opt/homebrew/opt/googletest
 GTEST_INCLUDE := -I$(GTEST_DIR)/include
 GTEST_LIB := -L$(GTEST_DIR)/lib -lgtest -lgtest_main -pthread
+GTEST_PARAMS := 
 
 # OpenBLAS library import
 BLAS_DIR := /opt/homebrew/opt/openblas
@@ -38,7 +39,7 @@ $(TARGET): $(OBJS)
 
 # Test target
 test: $(TEST_TARGET)
-	./$(TEST_TARGET)
+	./$(TEST_TARGET) $(GTEST_PARAMS)
 
 $(TEST_TARGET): $(TEST_OBJS) $(filter-out main.o, $(OBJS))
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_LIB) $(BLAS_LIB)

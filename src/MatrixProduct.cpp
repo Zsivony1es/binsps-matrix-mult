@@ -3,7 +3,10 @@
 #include <cblas.h>
 
 template <size_t N, size_t M, NumericOrBoolean T>
-std::vector<double> MatrixProduct::naive_bin_matrix_vector(Matrix<N, M, T> m, std::vector<double> vec){
+std::vector<double> MatrixProduct::naive_bin_matrix_vector(Matrix<N, M, T> m, std::vector<double> vec, double threshold){
+
+    MatrixProduct::remove_values_below_threshold(vec, threshold);
+
     auto ret_val = std::vector<double>();
     for (size_t i = 0; i < N; ++i){
         double entry = 0.0;
@@ -15,7 +18,10 @@ std::vector<double> MatrixProduct::naive_bin_matrix_vector(Matrix<N, M, T> m, st
     return ret_val;
 }
 
-std::vector<double> MatrixProduct::bin_matrix_vector(SparseBoolMatrix m, std::vector<double> vec){
+std::vector<double> MatrixProduct::bin_matrix_vector(SparseBoolMatrix m, std::vector<double> vec, double threshold){
+
+    MatrixProduct::remove_values_below_threshold(vec, threshold);
+
     auto ci = m.get_col_indices();
     auto rp = m.get_row_pointers();
 
@@ -34,7 +40,9 @@ std::vector<double> MatrixProduct::bin_matrix_vector(SparseBoolMatrix m, std::ve
 }
 
 template <size_t N, size_t M>
-std::vector<double> MatrixProduct::blas_matrix_vector(RawBoolMatrix<N,M> m, std::vector<double> vec){
+std::vector<double> MatrixProduct::blas_matrix_vector(RawBoolMatrix<N,M> m, std::vector<double> vec, double threshold){
+
+    MatrixProduct::remove_values_below_threshold(vec, threshold);
 
     std::vector<double> result(N, 0.0);
 
@@ -56,24 +64,37 @@ std::vector<double> MatrixProduct::blas_matrix_vector(RawBoolMatrix<N,M> m, std:
 }
 
 template <size_t N, size_t M>
-std::vector<double> MatrixProduct::ps_bin_matrix_vector(BitsetMatrix<N, M> m, std::vector<double> vec){
+std::vector<std::vector<double>> MatrixProduct::ps_bin_matrix_vector(
+    std::vector<BitsetMatrix<N, M>> matrices, 
+    std::vector<double> vec, 
+    size_t max_sum_term_count, 
+    double threshold) {
 
-    // TODO: Analyze what value would be good here
-    size_t max_el_count = std::ceil(std::log2(M));
+    MatrixProduct::remove_values_below_threshold(vec, threshold);
 
-    std::unordered_map<std::bitset<M>, double> partial_sums = PartialSum::precompute_partial_sums<M>(vec, max_el_count);
-
-    std::vector<double> result{};
-    for (size_t i = 0; i < N; ++i){
-        std::bitset<M> row = m.get_row(i);
-        if (partial_sums.find(row) == partial_sums.end()){
-            double sum = 0.0;
-            for (size_t j = 0; j < M; ++j){
-                sum += (row[j]) ? vec[j] : 0.0;
-            }
-            partial_sums[row] = sum;
-        }
-        result.push_back(partial_sums[row]);
+    // TODO: Analyze what value would be good for max_sum_term_count
+    if (max_sum_term_count == 0){
+        max_sum_term_count = std::ceil(std::log2(M));
     }
-    return result;
+
+    std::unordered_map<std::bitset<M>, double> partial_sums = PartialSum::precompute_partial_sums<M>(vec, max_sum_term_count);
+
+    std::vector<std::vector<double>> results{};
+
+    for (auto m : matrices){
+        std::vector<double> result{};
+        for (size_t i = 0; i < N; ++i){
+            std::bitset<M> row = m.get_row(i);
+            if (partial_sums.find(row) == partial_sums.end()){
+                double sum = 0.0;
+                for (size_t j = 0; j < M; ++j){
+                    sum += (row[j]) ? vec[j] : 0.0;
+                }
+                partial_sums[row] = sum;
+            }
+            result.push_back(partial_sums[row]);
+        }
+        results.push_back(result);
+    }
+    return results;
 }

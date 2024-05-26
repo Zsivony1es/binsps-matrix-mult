@@ -6,6 +6,7 @@
 
 template <typename T>
 struct IMatrix {
+    virtual ~IMatrix() = default;
     virtual const T operator[](size_t row, size_t col) const = 0;
     virtual std::string to_string() const = 0;
 };

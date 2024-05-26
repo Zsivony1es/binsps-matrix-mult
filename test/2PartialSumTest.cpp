@@ -2,6 +2,8 @@
 #include <string>
 #include <bitset>
 #include <gtest/gtest.h>
+
+#include "../src/utils/Utils.cpp"
 #include "../src/PartialSum.cpp"
 
 TEST(PartialSumTest, TestPartialSum) {
@@ -16,6 +18,18 @@ TEST(PartialSumTest, TestPartialSum) {
 
     ASSERT_EQ(result, expected);
 }
+
+TEST(PartialSumTest, TestPartialSumTerminatesWithLargerInput) {
+    std::vector<double> vec;
+    vec.resize(100, 1.0);
+
+    uint runtime = Utils::time_exec(
+        [&vec](){PartialSum::precompute_partial_sums<100>(vec, 15);}
+    );
+
+    ASSERT_LT(runtime, 3000);
+}
+
 
 TEST(PartialSumTest, TestPartialSumWithLimit) {
     std::vector<double> vec = {1.0, 2.0, 3.0, 4.0};
