@@ -38,7 +38,7 @@ TEST_P(ThresholdProductPerformanceTests, ThresholdProductPerformanceTest) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector, &threshold](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector, threshold);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector, threshold);
             }
     );
 

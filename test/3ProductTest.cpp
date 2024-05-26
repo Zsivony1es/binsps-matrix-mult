@@ -17,7 +17,7 @@ TEST(ProductTest, test_naive_square_matrix_multiplication) {
     std::vector<double> correctVec = {9,6,15,0,0};
     std::vector<double> resultVec = {};
 
-    resultVec = MatrixProduct::naive_bin_matrix_vector(matrix, randomVector);
+    resultVec = MatrixProduct::naive_matrix_vector(matrix, randomVector);
 
     ASSERT_EQ(resultVec.size(), correctVec.size());
     for (int i = 0; i < resultVec.size(); i++){
@@ -45,7 +45,7 @@ TEST(ProductTest, test_naive_matrix_multiplication) {
     std::vector<double> correctVec = {8,5,2,4,5,8,5,2,4,5};
     std::vector<double> resultVec = {};
 
-    resultVec = MatrixProduct::naive_bin_matrix_vector(matrix, randomVector);
+    resultVec = MatrixProduct::naive_matrix_vector(matrix, randomVector);
 
     ASSERT_EQ(resultVec.size(), correctVec.size());
     for (int i = 0; i < resultVec.size(); i++){
@@ -175,7 +175,7 @@ TEST(ProductTest, test_ps_square_matrix_multiplication) {
     const std::vector<double> correctVec = {8,5,2,4,5};
 
     std::vector<std::vector<double>> resultVec = {};
-    resultVec = MatrixProduct::ps_bin_matrix_vector(matrixList, inputVector);
+    resultVec = MatrixProduct::ps_matrix_vector(matrixList, inputVector);
 
     ASSERT_EQ(resultVec.at(0).size(), correctVec.size());
     for (int i = 0; i < correctVec.size(); i++){
@@ -205,7 +205,7 @@ TEST(ProductTest, test_ps_matrix_multiplication) {
     const std::vector<double> correctVec = {8,5,2,4,5,8,5,2,4,5};
 
     std::vector<std::vector<double>> resultVec = {};
-    resultVec = MatrixProduct::ps_bin_matrix_vector(matrixList, inputVector);
+    resultVec = MatrixProduct::ps_matrix_vector(matrixList, inputVector);
 
     ASSERT_EQ(resultVec.at(0).size(), correctVec.size());
     for (int i = 0; i < correctVec.size(); i++){

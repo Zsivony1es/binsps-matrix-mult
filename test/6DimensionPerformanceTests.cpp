@@ -32,7 +32,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -70,7 +70,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -90,7 +92,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -128,7 +130,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -148,7 +152,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_200_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -186,7 +190,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_200_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -206,7 +212,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_300_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -244,7 +250,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_300_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -264,7 +272,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_400_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -302,7 +310,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_400_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -322,7 +332,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_500_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -360,7 +370,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_500_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -380,7 +392,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_600_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -418,7 +430,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_600_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -438,7 +452,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_700_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -476,7 +490,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_700_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -496,7 +512,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_800_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -534,7 +550,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_800_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -554,7 +572,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_900_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -592,7 +610,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_900_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -612,7 +632,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1000_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -650,7 +670,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1000_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -670,7 +692,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1500_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -708,7 +730,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1500_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -728,7 +752,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_2000_50) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -766,7 +790,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_2000_50) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -786,7 +812,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_100) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -824,7 +850,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_100) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -844,7 +872,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_200) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -882,7 +910,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_200) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -902,7 +932,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_300) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -940,7 +970,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_300) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -960,7 +992,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_400) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -998,7 +1030,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_400) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1018,7 +1052,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_500) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1056,7 +1090,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_500) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1076,7 +1112,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_600) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1114,7 +1150,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_600) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1134,7 +1172,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_700) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1172,7 +1210,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_700) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1192,7 +1232,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_800) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1230,7 +1270,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_800) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1250,7 +1292,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_900) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1288,7 +1330,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_900) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1308,7 +1352,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_1000) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1346,7 +1390,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_1000) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1366,7 +1412,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_1500) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1404,7 +1450,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_1500) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1424,7 +1472,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_2000) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1462,7 +1510,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_50_2000) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1482,7 +1532,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_100) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1520,7 +1570,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_100) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1540,7 +1592,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_200_200) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1578,7 +1630,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_200_200) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1598,7 +1652,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_300_300) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1636,7 +1690,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_300_300) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1656,7 +1712,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_400_400) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1694,7 +1750,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_400_400) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1714,7 +1772,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_500_500) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1752,7 +1810,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_500_500) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1772,7 +1832,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_600_600) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1810,7 +1870,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_600_600) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1830,7 +1892,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_700_700) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1868,7 +1930,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_700_700) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1888,7 +1952,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_800_800) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1926,7 +1990,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_800_800) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -1946,7 +2012,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_900_900) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -1984,7 +2050,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_900_900) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -2004,7 +2072,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1000_1000) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -2042,7 +2110,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1000_1000) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
@@ -2062,7 +2132,7 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1500_1500) {
     std::vector<double> correctVec;
     uint naive_time = Utils::time_exec(
         [&correctVec, &inputMatrix, &randomVector](){
-            correctVec = MatrixProduct::naive_bin_matrix_vector(inputMatrix, randomVector);
+            correctVec = MatrixProduct::naive_matrix_vector(inputMatrix, randomVector);
             }
     );
 
@@ -2100,7 +2170,9 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1500_1500) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());

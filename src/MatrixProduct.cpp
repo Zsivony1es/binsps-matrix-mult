@@ -3,7 +3,7 @@
 #include <cblas.h>
 
 template <size_t N, size_t M, NumericOrBoolean T>
-std::vector<double> MatrixProduct::naive_bin_matrix_vector(Matrix<N, M, T> m, std::vector<double> vec, double threshold){
+std::vector<double> MatrixProduct::naive_matrix_vector(Matrix<N, M, T> m, std::vector<double> vec, double threshold){
 
     MatrixProduct::remove_values_below_threshold(vec, threshold);
 
@@ -61,40 +61,4 @@ std::vector<double> MatrixProduct::blas_matrix_vector(RawBoolMatrix<N,M> m, std:
     }
 
     return result;
-}
-
-template <size_t N, size_t M>
-std::vector<std::vector<double>> MatrixProduct::ps_bin_matrix_vector(
-    std::vector<BitsetMatrix<N, M>> matrices, 
-    std::vector<double> vec, 
-    size_t max_sum_term_count, 
-    double threshold) {
-
-    MatrixProduct::remove_values_below_threshold(vec, threshold);
-
-    // TODO: Analyze what value would be good for max_sum_term_count
-    if (max_sum_term_count == 0){
-        max_sum_term_count = std::ceil(std::log2(M));
-    }
-
-    std::unordered_map<std::bitset<M>, double> partial_sums = PartialSum::precompute_partial_sums<M>(vec, max_sum_term_count);
-
-    std::vector<std::vector<double>> results{};
-
-    for (auto m : matrices){
-        std::vector<double> result{};
-        for (size_t i = 0; i < N; ++i){
-            std::bitset<M> row = m.get_row(i);
-            if (partial_sums.find(row) == partial_sums.end()){
-                double sum = 0.0;
-                for (size_t j = 0; j < M; ++j){
-                    sum += (row[j]) ? vec[j] : 0.0;
-                }
-                partial_sums[row] = sum;
-            }
-            result.push_back(partial_sums[row]);
-        }
-        results.push_back(result);
-    }
-    return results;
 }

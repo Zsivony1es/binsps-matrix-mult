@@ -50,9 +50,22 @@ public:
         file.close();
     }
 
-    static inline void create_perf_test_header_if_not_exists(){
-        std::string performance_results_path = "./generated/performance_results.csv";
-        std::string header = "N,M,sparsity,naive_time,blas_time,opt_time,naive_speedup,blas_speedup";
+    static inline void create_perf_test_header_if_not_exists(std::string filename = "performance_results.csv"){
+        std::string performance_results_path = "./generated/" + filename;
+        std::string header = "N,M,sparsity,naive_time,blas_time,opt_time,naive_speedup,blas_speedup,opt_speedup";
+        std::ifstream f(performance_results_path.c_str());
+
+        if (!f.good()) { // Check if file is already created
+            std::ofstream file;
+            file.open(performance_results_path, std::ios::app);
+            file << header <<std::endl;
+            file.close();
+        }
+    }
+
+    static void create_multi_prod_perf_test_header_if_not_exists(){
+        std::string performance_results_path = "./generated/multi_product_performance_results.csv";
+        std::string header = "N,naive_time,blas_time,opt_time,ps_time,naive_speedup,opt_speedup,blas_speedup,ps_speedup";
         std::ifstream f(performance_results_path.c_str());
 
         if (!f.good()) { // Check if file is already created
@@ -92,6 +105,10 @@ public:
         }
         
         return vec;
+    }
+
+    static double round_to_n_digits(double value, int n = 2){
+        return std::round(value * std::pow(10,n)) / std::pow(10,n);
     }
 
     static inline void test_debug(std::string str){
