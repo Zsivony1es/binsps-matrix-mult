@@ -76,10 +76,12 @@ TEST_P(ThresholdProductPerformanceTests, ThresholdProductPerformanceTest) {
 
     std::stringstream ss;
     ss << N << "," << M << "," << sparsity << "," << naive_time << "," << blas_time << "," << opt_time << "," 
-        << static_cast<double>(naive_time)/opt_time << "," << static_cast<double>(blas_time)/opt_time;
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/naive_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/blas_time) << "," 
+        << Utils::round_to_n_digits(static_cast<double>(naive_time)/opt_time);
 
-    Utils::create_perf_test_header_if_not_exists();
-    Utils::append_to_file("performance_results.csv", ss.str());
+    Utils::create_perf_test_header_if_not_exists("threshold_performance_results.csv");
+    Utils::append_to_file("threshold_performance_results.csv", ss.str());
 }
 
 INSTANTIATE_TEST_SUITE_P(
