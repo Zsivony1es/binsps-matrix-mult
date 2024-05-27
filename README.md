@@ -11,3 +11,7 @@ can do this by changing the following variables:
 GTEST_DIR := /path/to/gtest
 BLAS_DIR := /path/to/openblas
 ```
+
+After ensuring these are correctly set, you can simply run `make test` to execute the Google Tests, which will
+generate the performance test results under `generated/*.csv`. To make sure the base code gets recompiled for the test,
+execute `make clean`.
