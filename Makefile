@@ -39,6 +39,7 @@ $(TARGET): $(OBJS)
 
 # Test target
 test: $(TEST_TARGET)
+	rm -rf $(GENERATED_DIR)/*.csv
 	./$(TEST_TARGET) $(GTEST_PARAMS)
 
 $(TEST_TARGET): $(TEST_OBJS) $(filter-out main.o, $(OBJS))
@@ -57,4 +58,4 @@ main.o: main.cpp
 	$(CXX) $(CXXFLAGS) $(BLAS_INCLUDE) -c -o $@ $<
 
 clean:
-	rm -f $(TARGET) $(TEST_TARGET) $(SRC_DIR)/**/*.o $(SRC_DIR)/*.o $(TEST_DIR)/*.o $(TEST_DIR)/**/*.o main.o $(GENERATED_DIR)/*.csv
+	rm -f $(TARGET) $(TEST_TARGET) $(SRC_DIR)/**/*.o $(SRC_DIR)/*.o $(TEST_DIR)/*.o $(TEST_DIR)/**/*.o main.o
