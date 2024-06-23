@@ -1,38 +1,53 @@
 #include "src/MatrixProduct.cpp"
-#include "src/datastructs/SparseBoolMatrix.cpp"
+#include "src/RandomMatrixGenerator.cpp"
 
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
 #include <cmath>
 #include <sstream>
+#include <algorithm>
 
 int main(int argc, char *argv[])
 {
+    const size_t N = 10, M = 10, matrixCount = 10000;
+    const double sparsity = 0.1;
     
-    Matrix<15, 30, bool> m(true);
+    RandomMatrixGenerator<N,M,bool> generator = RandomMatrixGenerator<N,M,bool>(12123);
 
-    std::vector<size_t> col_index = {1,1,2,2,3,4,3};
-    std::vector<size_t> row_index = {0,1,3,6,6,7};
+    std::vector<Matrix<N,M,bool>> inputMatrices;
+    for (size_t i = 0; i < matrixCount; i++) {
+        inputMatrices.push_back(generator.generate_generic(sparsity));
+    }
+        
+    std::vector<double> randomVector = Utils::generate_random_vector(M);
 
-    SparseBoolMatrix sbm(col_index, row_index);
+    /*
+    // Print matrices
+    for (auto& inputMatrix : inputMatrices) {
+        std::cout << inputMatrix.to_string() << std::endl;
+    }
+    */
 
-    std::cout << m.to_string() << std::endl;
+    std::vector<BitsetMatrix<N,M>> bitset_matrices = std::vector<BitsetMatrix<N,M>>(inputMatrices.size());
+    std::transform(inputMatrices.begin(), inputMatrices.end(), bitset_matrices.begin(), [](Matrix<N,M,bool> m){return BitsetMatrix<N,M>(m);});
 
-    std::cout << sbm.to_string();
-
-    std::vector<double> input = {0.00032, 1.231, 42, 51232, 0.000000053};
-
-    std::vector<double> result;
-    uint time = Utils::time_exec(
-        [&result, &input, &sbm](){result = MatrixProduct::bin_matrix_vector(sbm, input);}
+    uint naive_time = Utils::time_exec(
+        [&inputMatrices, &randomVector](){
+            for (auto& inputMatrix : inputMatrices) {
+               MatrixProduct::naive_matrix_vector(inputMatrix, randomVector); 
+            }
+        }
     );
-    
-    std::stringstream ss;
-    ss << "Result: " << Utils::vec_to_str<double>(result) << std::endl;
-    ss << "Time: " << time << "ns" << std::endl;
 
-    Utils::append_to_file("main_output.txt", ss.str());
+    uint ps_time = Utils::time_exec(
+        [&bitset_matrices, &randomVector](){
+            MatrixProduct::ps_matrix_vector(bitset_matrices, randomVector);
+        }
+    );
+
+    std::cout << "Naive: " << naive_time << " Hashing: " << ps_time << std::endl;
+    std::cout << "Speedup: " << static_cast<float>(naive_time)/ps_time << std::endl;
 
     return 0;
 }

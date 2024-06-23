@@ -87,5 +87,5 @@ TEST_P(MultiProductPerformanceTests, MultiProductPerformanceTest) {
 INSTANTIATE_TEST_SUITE_P(
     MultiProductPerformanceTests,
     MultiProductPerformanceTests,
-    ::testing::Values(10, 50, 100, 500, 1000)
+    ::testing::Values(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
 );

@@ -83,7 +83,7 @@ public:
 
         // TODO: Analyze what value would be good for max_sum_term_count
         if (max_sum_term_count == 0){
-            max_sum_term_count = std::ceil(std::log2(M));
+            max_sum_term_count = std::ceil(std::log2(8));
         }
 
         std::unordered_map<std::bitset<M>, double> partial_sums = PartialSum::precompute_partial_sums<M>(vec, max_sum_term_count);
