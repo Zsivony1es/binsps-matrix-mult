@@ -202,11 +202,11 @@ TEST(ProductTest, test_ps_matrix_multiplication) {
     const BitsetMatrix<10,5> matrix(matrixData);
     std::vector<BitsetMatrix<10,5>> matrixList;
     matrixList.push_back(matrix);
-    const std::vector<double> correctVec = {8,5,2,4,5,8,5,2,4,5};
 
     std::vector<std::vector<double>> resultVec = {};
     resultVec = MatrixProduct::ps_matrix_vector(matrixList, inputVector);
 
+    const std::vector<double> correctVec = {8,5,2,4,5,8,5,2,4,5};
     ASSERT_EQ(resultVec.at(0).size(), correctVec.size());
     for (int i = 0; i < correctVec.size(); i++){
         ASSERT_EQ(resultVec.at(0).at(i), correctVec.at(i));

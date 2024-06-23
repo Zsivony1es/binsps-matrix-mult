@@ -25,7 +25,9 @@ public:
         for (size_t i = 0; i < N; ++i){
             for (size_t j = 0; j < M; ++j){
                 if (distribution(this->mt) < sparsity){
-                    data[i][j] = static_cast<T>(this->mt() % 2);
+                    data[i][j] = static_cast<T>(1);
+                } else {
+                    data[i][j] = static_cast<T>(0);
                 }
             }
         }
