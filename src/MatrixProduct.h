@@ -104,7 +104,7 @@ public:
                 result.push_back(partial_sums[row]);
             }
             results.push_back(result);
-        }
+        }        
         return results;
     }
 };

@@ -75,10 +75,10 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_100) {
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
-}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_200_200) {
+}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_200_100) {
 
     const size_t N = 200;
-    const size_t M = 200;
+    const size_t M = 100;
 
     double sparsity = 1.0 / (static_cast<double>(N) + M);
 
@@ -133,10 +133,10 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_100) {
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
-}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_300_300) {
+}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_300_100) {
 
     const size_t N = 300;
-    const size_t M = 300;
+    const size_t M = 100;
 
     double sparsity = 1.0 / (static_cast<double>(N) + M);
 
@@ -191,10 +191,10 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_100) {
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
-}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_400_400) {
+}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_400_100) {
 
     const size_t N = 400;
-    const size_t M = 400;
+    const size_t M = 100;
 
     double sparsity = 1.0 / (static_cast<double>(N) + M);
 
@@ -249,10 +249,10 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_100) {
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
-}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_500_500) {
+}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_500_100) {
 
     const size_t N = 500;
-    const size_t M = 500;
+    const size_t M = 100;
 
     double sparsity = 1.0 / (static_cast<double>(N) + M);
 
@@ -307,10 +307,10 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_100) {
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
-}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_600_600) {
+}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_600_100) {
 
     const size_t N = 600;
-    const size_t M = 600;
+    const size_t M = 100;
 
     double sparsity = 1.0 / (static_cast<double>(N) + M);
 
@@ -365,10 +365,10 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_100) {
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
-}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_700_700) {
+}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_700_100) {
 
     const size_t N = 700;
-    const size_t M = 700;
+    const size_t M = 100;
 
     double sparsity = 1.0 / (static_cast<double>(N) + M);
 
@@ -423,10 +423,10 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_100) {
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
-}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_800_800) {
+}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_800_100) {
 
     const size_t N = 800;
-    const size_t M = 800;
+    const size_t M = 100;
 
     double sparsity = 1.0 / (static_cast<double>(N) + M);
 
@@ -481,10 +481,10 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_100) {
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
-}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_900_900) {
+}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_900_100) {
 
     const size_t N = 900;
-    const size_t M = 900;
+    const size_t M = 100;
 
     double sparsity = 1.0 / (static_cast<double>(N) + M);
 
@@ -539,10 +539,10 @@ TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_100_100) {
 
     Utils::create_perf_test_header_if_not_exists();
     Utils::append_to_file("performance_results.csv", ss.str());
-}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1000_1000) {
+}TEST_F(DimensionPerformanceTests, DimensionPerformanceTest_1000_100) {
 
     const size_t N = 1000;
-    const size_t M = 1000;
+    const size_t M = 100;
 
     double sparsity = 1.0 / (static_cast<double>(N) + M);
 
