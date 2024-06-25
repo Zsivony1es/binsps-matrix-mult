@@ -40,6 +40,24 @@ std::vector<double> MatrixProduct::bin_matrix_vector(SparseBoolMatrix m, std::ve
 }
 
 template <size_t N, size_t M>
+std::vector<double> MatrixProduct::partial_sum_matrix_vector(BitsetMatrix<N, M> m, std::vector<double> vec, double threshold){
+    std::vector<double> result = {};
+    MatrixProduct::remove_values_below_threshold(vec, threshold);
+
+    std::vector<std::bitset<M>> rows = m.get_rows();
+    std::unordered_map<std::bitset<M>, double> partial_sums;
+
+    for (const auto& row : rows){
+        if (row.count() == 1){
+            // TODO
+            break;
+        }
+    }
+    
+    return result;
+}
+
+template <size_t N, size_t M>
 std::vector<double> MatrixProduct::blas_matrix_vector(RawBoolMatrix<N,M> m, std::vector<double> vec, double threshold){
 
     MatrixProduct::remove_values_below_threshold(vec, threshold);

@@ -212,3 +212,31 @@ TEST(ProductTest, test_ps_matrix_multiplication) {
         ASSERT_EQ(resultVec.at(0).at(i), correctVec.at(i));
     }
 }
+
+TEST(ProductTest, test_partial_sum_matrix_multiplication) {
+
+    std::vector<double> inputVector = {1,2,3,4,5};
+    std::array<std::array<bool, 5>, 10> matrixData = {{
+        {true, false, true, true, false},
+        {false, false, false, false, true},
+        {false, true, false, false, false},
+        {false, false, false, true, false},
+        {false, false, false, false, true},
+        {true, false, true, true, false},
+        {false, false, false, false, true},
+        {false, true, false, false, false},
+        {false, false, false, true, false},
+        {false, false, false, false, true}
+    }};
+
+    const BitsetMatrix<10,5> matrix(matrixData);
+
+    std::vector<double> resultVec = {};
+    resultVec = MatrixProduct::partial_sum_matrix_vector(matrix, inputVector);
+
+    const std::vector<double> correctVec = {8,5,2,4,5,8,5,2,4,5};
+    ASSERT_EQ(resultVec.size(), correctVec.size());
+    for (int i = 0; i < correctVec.size(); i++){
+        ASSERT_EQ(resultVec.at(i), correctVec.at(i));
+    }
+}

@@ -4,6 +4,7 @@
 #include "Matrix.cpp"
 
 #include <string>
+#include <vector>
 #include <sstream>
 #include <bitset>
 
@@ -65,6 +66,14 @@ public:
             row[j] = data[index * M + j];
         }
         return row;
+    }
+
+    std::vector<std::bitset<M>> get_rows() {
+        std::vector<std::bitset<M>> rows;
+        for (size_t i = 0; i < N; ++i) {
+            rows.push_back(get_row(i));
+        }
+        return rows;
     }
 
     std::string to_string() const override {

@@ -62,6 +62,24 @@ public:
     static std::vector<double> blas_matrix_vector(RawBoolMatrix<N,M> m, std::vector<double> vec, double threshold = -1.0);
 
     /**
+     * Computes the matrix-vector product of a vector and a binary matrix.
+     *
+     * @tparam N The number of rows in the binary matrix.
+     * @tparam M The number of columns in the binary matrix and the size of the vector.
+     *
+     * @param m The binary matrix
+     * @param vec The vector.
+     * @param max_sum_term_count The maximum number of terms in the partial sums.
+     * @param threshold The threshold below which the entries in the vector are set to 0.
+     *
+     * @return The resulting vectors.
+     *
+     * @throws None
+     */
+    template <size_t N, size_t M>
+    static std::vector<double> partial_sum_matrix_vector(BitsetMatrix<N, M> m, std::vector<double> vec, double threshold = -1.0);
+
+    /**
      * Computes the matrix-vector product of a vector and many different binary matrices.
      *
      * @tparam N The number of rows in the binary matrix.
