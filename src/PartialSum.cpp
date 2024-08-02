@@ -6,7 +6,8 @@
 class PartialSum {
 private:
     template <size_t N>
-    static void generate_combinations(int K, std::unordered_map<std::bitset<N>, double>& result, std::bitset<N>& current, int start, int ones_count) {
+    static void generate_combinations(int K, std::unordered_map<std::bitset<N>, double>& result, 
+                                        std::bitset<N>& current, int start, int ones_count) {
         if (ones_count > K) {
             return;
         }
