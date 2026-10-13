@@ -3,3 +3,5 @@ Paper
 run
 run_tests
 generated/*
+.DS_Store
+.vscode/
